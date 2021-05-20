@@ -25,7 +25,7 @@ const ThoughtList = ({ thoughts, title }) => {
     thoughts.map(thought => (
     <Box p={1} key={thought._id}>
     <Card style={{minWidth: 345, maxWidth: 345, maxheight: 300}}>
-      <Link to={`/profile/${thought.username}`}>
+      <Link to={`/profile/${thought.username}`} style={{ textDecoration: 'none'}}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" style={{backgroundColor: '#2196f3'}}>
@@ -43,7 +43,7 @@ const ThoughtList = ({ thoughts, title }) => {
       />
 
       <CardContent>
-      <Link to={`/thought/${thought._id}`}>
+      <Link to={`/thought/${thought._id}`} style={{ textDecoration: 'none'}}>
         <Typography variant="body2" color="textSecondary" component="p">
         {thought.thoughtText}
         </Typography>
@@ -53,13 +53,15 @@ const ThoughtList = ({ thoughts, title }) => {
       <CardActions>
         <IconButton aria-label="click to like">
           <FavoriteIcon /> 
-        </IconButton ># of likes
+        </IconButton>
+        <Typography># of likes</Typography>
         
         <Link to={`/thought/${thought._id}`}>
          <IconButton aria-label="comment">
          <CommentIcon/>
         </IconButton>
-          </Link>{thought.reactionCount}
+          </Link>
+          <Typography>{thought.reactionCount}</Typography>
         </CardActions>
 
     </Card>

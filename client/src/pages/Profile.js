@@ -10,7 +10,7 @@ import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import { ADD_FRIEND } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-import { Box, Divider, Typography} from '@material-ui/core/';
+import { Box, Divider, Typography, Button } from '@material-ui/core/';
 
 
 const Profile = props => {
@@ -59,13 +59,15 @@ const Profile = props => {
         <Typography variant="h4">
           Viewing {userParam ? `${user.username}'s` : 'your'} Dashboard.
         </Typography>
-        <div className="mb-3">{!userParam && <ThoughtForm />}</div>
+        <div>{!userParam && <ThoughtForm />}</div>
 
+        <Box p={2}>
         {userParam && (
-          <button className="btn ml-auto" onClick={handleClick}>
-            Add Friend
-          </button>
+          <Button variant="contained" style={{ backgroundColor: '#90a4ae' }} onClick={handleClick}>
+            Follow
+          </Button>
         )}
+        </Box>
       </Box>
       <Divider/>
 
