@@ -1,12 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Divider} from '@material-ui/core/';
+import Auth from '../../utils/auth';
+
+import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Button, Typography, Divider} from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import CommentIcon from '@material-ui/icons/Comment';
 
 const ThoughtList = ({ thoughts, title }) => {
+
+
   if (!thoughts.length) {
     return <h3>No Thoughts Yet</h3>;
   }
@@ -44,17 +48,19 @@ const ThoughtList = ({ thoughts, title }) => {
 
       <CardContent>
       <Link to={`/thought/${thought._id}`} style={{ textDecoration: 'none'}}>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" component="p">
         {thought.thoughtText}
         </Typography>
         </Link>
       </CardContent>
       <Divider/>
       <CardActions>
+    
         <IconButton aria-label="click to like">
           <FavoriteIcon /> 
         </IconButton>
-        <Typography># of likes</Typography>
+        <Typography>#oflikes</Typography>
+       
         
         <Link to={`/thought/${thought._id}`}>
          <IconButton aria-label="comment">
@@ -63,7 +69,7 @@ const ThoughtList = ({ thoughts, title }) => {
           </Link>
           <Typography>{thought.reactionCount}</Typography>
         </CardActions>
-
+        
     </Card>
   </Box>
     ))}

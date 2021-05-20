@@ -7,8 +7,11 @@ import { teal } from '@material-ui/core/colors'
 const FriendList = ({ friendCount, username, friends }) => {
   
   if (!friends || !friends.length) {
-    return <p className="bg-dark text-light p-3">{username}, make some friends!</p>;
-  }
+    return (
+    <Box p={2}>
+    <Typography>{username} is not following anyone.</Typography>
+    </Box>
+    )}
 
   return (
     <div>

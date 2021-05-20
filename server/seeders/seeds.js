@@ -35,6 +35,21 @@ db.once('open', async () => {
     await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
   }
 
+  // create friends
+  for (let i = 0; i < 100; i += 1) {
+    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+    const { _id: userId } = createdUsers.ops[randomUserIndex];
+
+    let likeId = userId;
+
+    while (likeId === userId) {
+      const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+      likeId = createdUsers.ops[randomUserIndex];
+    }
+
+    await User.updateOne({ _id: userId }, { $addToSet: { likes: likeId } });
+  }
+
   // create thoughts
   let createdThoughts = [];
   for (let i = 0; i < 100; i += 1) {

@@ -18,23 +18,15 @@ const Home = () => {
 
   return (
     <main>
-      <div className="flex-row justify-space-between">
+      <div>
 
-        <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
+        <div className={`${loggedIn}`}>
           {loading ? (
             <div>Loading...</div>
           ) : (
             <ThoughtList thoughts={thoughts} title="Welcome to the Blabs!" />
           )}
         </div>
-        <Divider/>
-        {loggedIn && userData ? (
-            <FriendList
-              username={userData.me.username}
-              friendCount={userData.me.friendCount}
-              friends={userData.me.friends}
-            />
-        ) : null}
       </div>
     </main>
   );

@@ -2,20 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Divider, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, ButtonBase} from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const ReactionList = ({ reactions }) => {
   return (
 
     <div style={{ width: '100%'}}>
-      {reactions &&
-          reactions.map(reaction => (     
+        
     <Box
         display="flex"
         flexWrap="wrap"
         justifyContent="center"
     >
-      
+      {reactions &&
+          reactions.map(reaction => (   
     <Box p={1}>
     <Card>
     <Link to={`/profile/${reaction.username}`}>
@@ -30,19 +30,23 @@ const ReactionList = ({ reactions }) => {
       />
       </Link>
      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p" key={reaction._id}>
+        <Typography variant="body2" component="p" key={reaction._id}>
         {reaction.reactionBody}
         </Typography>
         </CardContent>
+        <Divider/>
+        <CardActions>
+        <IconButton aria-label="click to like">
+          <FavoriteIcon /> 
+        </IconButton>
+        <Typography># of likes</Typography>
+        </CardActions>
+
         </Card>
     </Box>
+      ))}
     </Box>
-    ))};
-      
     </div>
-    
-
-    
   );
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import ThoughtForm from '../components/ThoughtForm';
 import ThoughtList from '../components/ThoughtList';
 import FriendList from '../components/FriendList';
@@ -28,7 +28,7 @@ const Profile = props => {
     Auth.loggedIn() &&
     Auth.getProfile().data.username === userParam
   ) {
-    return <Redirect to="/profile" />;
+    return <Redirect to="/profile/" />;
   }
 
   if (loading) {
@@ -37,9 +37,7 @@ const Profile = props => {
 
   if (!user?.username) {
     return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to sign up or log in!
-      </h4>
+      <Redirect to="/" />
     );
   }
 
@@ -57,7 +55,7 @@ const Profile = props => {
     <div>
       <Box pt={1}>
         <Typography variant="h4">
-          Viewing {userParam ? `${user.username}'s` : 'your'} Dashboard.
+          Viewing {userParam ? `${user.username}'s` : 'your'} Profile.
         </Typography>
         <div>{!userParam && <ThoughtForm />}</div>
 

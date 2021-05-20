@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
-import { makeStyles, AppBar, Toolbar, Button, Typography, Backdrop, Fade, IconButton, Checkbox, InputBase, FormControlLabel } from '@material-ui/core/';
+import { makeStyles, AppBar, Toolbar, Button, Typography, Box, Backdrop, Fade, IconButton, Checkbox, InputBase, FormControlLabel } from '@material-ui/core/';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -29,14 +29,16 @@ const Header = () => {
     <div>
       <AppBar position="static" style={{ background: '#2196f3', width: '100%' }}>
         <Toolbar>
+        
         <Link to="/" style={{ textDecoration: 'none', color: "#FFFFFF"}}>
-          <Typography variant="h6" style={{ flex:1 }}>
+          <Typography variant="h4" style={{ flex:1 }}>
             BLATHER!
           </Typography>
         </Link>
+        <Box style={{ marginLeft: 'auto'}}>
           {Auth.loggedIn() ? (
             <>
-              <Link to="/profile" style={{ textDecoration: 'none'}}><Button color="black">Dashboard</Button></Link>
+              <Link to="/profile" style={{ textDecoration: 'none'}}><Button color="black">Profile</Button></Link>
               <a href="/" onClick={logout} style={{ textDecoration: 'none' }}><Button color="white">
                 Logout
                 </Button></a>
@@ -47,7 +49,7 @@ const Header = () => {
               <Link to="/signup" style={{ textDecoration: 'none'  }}><Button color="black">Signup</Button></Link>
             </>
           )}
-      
+      </Box>
       </Toolbar>
       </AppBar>
     </div>

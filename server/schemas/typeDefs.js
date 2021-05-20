@@ -8,6 +8,7 @@ const typeDefs = gql`
     friendCount: Int
     thoughts: [Thought]
     friends: [User]
+    images: [Image]
   }
 
   type Thought {
@@ -26,6 +27,13 @@ const typeDefs = gql`
     username: String
   }
 
+  type Image {
+    _id: ID
+    url: String
+    caption: String
+    createdAt: String
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -37,14 +45,18 @@ const typeDefs = gql`
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(_id: ID!): Thought
+    imagesByUser(username: String!): [Image]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addThought(thoughtText: String!): Thought
+    likeThought(_id: ID): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
+    likeReaction(_id:ID): Reaction
+    addImage(url: String!, caption: String!, username: String!): [Image]
   }
 `;
 

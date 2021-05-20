@@ -34,7 +34,6 @@ const SingleThought = props => {
         justifyContent="center"
     >
     <Box p={2}>
-    <ButtonBase>
     <Card style={{ width: 300, maxheight: 300}}>
       <CardHeader
         avatar={
@@ -51,47 +50,24 @@ const SingleThought = props => {
         title="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" component="p">
         {thought.thoughtText}
         </Typography>
       </CardContent>
+      <Divider />
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon/> 
-        </IconButton># of likes
+        </IconButton>
+        <Typography># of likes</Typography>
         </CardActions>
     </Card>
-    </ButtonBase>
     </Box>
     </Box>
     {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
     <Divider variant="middle" />
     {thought.reactionCount > 0 && <ReactionList reactions={thought.reactions} />}
-
-    
-
     </div>
-
-
-
-// {/* 
-//     <div>
-//       <div className="card mb-3">
-//         <p className="card-header">
-//           <span style={{ fontWeight: 700 }} className="text-light">
-//             {thought.username}
-//           </span>{' '}
-//           thought on {thought.createdAt}
-//         </p>
-//         <div className="card-body">
-// //           <p>{thought.thoughtText}</p>
-//         </div>
-//       </div>
-
-//       {thought.reactionCount > 0 && <ReactionList reactions={thought.reactions} />}
-
-//       {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
-//     </div> */}
   );
 };
 

@@ -9,7 +9,7 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('thoughts')
-          .populate('friends');
+          .populate('friends')
 
         return userData;
       }
@@ -20,13 +20,13 @@ const resolvers = {
       return User.find()
         .select('-__v -password')
         .populate('thoughts')
-        .populate('friends');
+        .populate('friends')
     },
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password')
         .populate('friends')
-        .populate('thoughts');
+        .populate('thoughts')
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -35,6 +35,17 @@ const resolvers = {
     thought: async (parent, { _id }) => {
       return Thought.findOne({ _id });
     }
+  },
+  imagesByUser: async(parent, {
+    username
+    }) => {
+    const params = username ? {
+        username
+    } : {};
+
+    return Image.find(params).sort({
+        createdAt: -1
+    });
   },
 
   Mutation: {
@@ -100,7 +111,29 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
-    }
+    },
+    likeThought: async(parent, { _id }, context) => {
+      if (context.user) {
+          const retrieveThought = await Blab.find(_id);
+          let currentLikes = retrieveThought.likes;
+          currentLikes++;
+          return Thought.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
+
+      }
+      throw new AuthenticationError('You need to be logged in!');
+
+  },
+  likeReaction: async(parent, { _id }, context) => {
+      if (context.user) {
+          const retrieveReaction = await reaction.find(_id);
+          let currentLikes = retrieveReaction.likes;
+          currentLikes++;
+          return Reaction.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
+
+      }
+      throw new AuthenticationError('You need to be logged in!');
+
+  }
   }
 };
 
