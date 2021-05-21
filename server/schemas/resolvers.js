@@ -36,17 +36,17 @@ const resolvers = {
             return Thought.findOne({ _id });
         }
     },
-    imagesByUser: async(parent, {
-        username
-    }) => {
-        const params = username ? {
-            username
-        } : {};
+    // imagesByUser: async(parent, {
+    //     username
+    // }) => {
+    //     const params = username ? {
+    //         username
+    //     } : {};
 
-        return Image.find(params).sort({
-            createdAt: -1
-        });
-    },
+    //     return Image.find(params).sort({
+    //         createdAt: -1
+    //     });
+    // },
 
     Mutation: {
         addUser: async(parent, args) => {
