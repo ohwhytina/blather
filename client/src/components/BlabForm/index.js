@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
+import Image from '../Image'
 import { useMutation } from '@apollo/react-hooks';
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { ADD_BLAB } from '../../utils/mutations';
+import { QUERY_BLABS, QUERY_ME } from '../../utils/queries';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ThoughtForm = () => {
+const BlabForm = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -37,18 +37,18 @@ const ThoughtForm = () => {
     setOpen(false);
   };
 
-  const [thoughtText, setText] = useState('');
+  const [blabText, setText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addThought, { error }] = useMutation(ADD_THOUGHT, {
-    update(cache, { data: { addThought } }) {
+  const [addBlab, { error }] = useMutation(ADD_BLAB, {
+    update(cache, { data: { addBlab } }) {
       try {
-        // update thought array's cache
+        // update blab array's cache
         // could potentially not exist yet, so wrap in a try/catch
-        const { thoughts } = cache.readQuery({ query: QUERY_THOUGHTS });
+        const { blabs } = cache.readQuery({ query: QUERY_BLABS });
         cache.writeQuery({
-          query: QUERY_THOUGHTS,
-          data: { thoughts: [addThought, ...thoughts] }
+          query: QUERY_BLABS,
+          data: { blabs: [addBlab, ...blabs] }
         });
       } catch (e) {
         console.error(e);
@@ -58,7 +58,7 @@ const ThoughtForm = () => {
       const { me } = cache.readQuery({ query: QUERY_ME });
       cache.writeQuery({
         query: QUERY_ME,
-        data: { me: { ...me, thoughts: [...me.thoughts, addThought] } }
+        data: { me: { ...me, blabs: [...me.blabs, addBlab] } }
       });
     }
   });
@@ -76,8 +76,8 @@ const ThoughtForm = () => {
     event.preventDefault();
 
     try {
-      await addThought({
-        variables: { thoughtText }
+      await addBlab({
+        variables: { blabText }
       });
 
       // clear form value
@@ -125,7 +125,7 @@ const ThoughtForm = () => {
                     row="40"
                     variant="outlined"
                     className={`${characterCount === 280 || error ? 'text-error' : ''}`}
-                       value={thoughtText}
+                       value={blabText}
                       onChange={handleChange}
                   />
                   <Typography>Character Count: {characterCount}/280</Typography>
@@ -133,9 +133,11 @@ const ThoughtForm = () => {
                 </Grid>
               </Grid>
             </Grid>
-            <IconButton>
-              <InsertPhotoIcon/>
-            </IconButton>
+
+           <Box>
+             <Image></Image>
+           </Box>
+            
           <Box display="flex" m={1} p={1} bgcolor="background.paper">
         <Button color="secondary" type="submit" variant="contained">
             Blab away!
@@ -153,4 +155,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default BlabForm;

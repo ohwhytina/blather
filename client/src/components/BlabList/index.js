@@ -8,11 +8,11 @@ import FaceIcon from '@material-ui/icons/Face';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import CommentIcon from '@material-ui/icons/Comment';
 
-const ThoughtList = ({ thoughts, title }) => {
+const BlabList = ({ blabs, title }) => {
 
 
-  if (!thoughts.length) {
-    return <h3>No Thoughts Yet</h3>;
+  if (!blabs.length) {
+    return <h3>No Blabs Yet</h3>;
   }
 
   return (
@@ -25,19 +25,19 @@ const ThoughtList = ({ thoughts, title }) => {
         flexWrap="wrap"
         justifyContent="flex-start"
     >
-      {thoughts &&
-    thoughts.map(thought => (
-    <Box p={1} key={thought._id}>
+      {blabs &&
+    blabs.map(blab => (
+    <Box p={1} key={blab._id}>
     <Card style={{minWidth: 345, maxWidth: 345, maxheight: 300}}>
-      <Link to={`/profile/${thought.username}`} style={{ textDecoration: 'none'}}>
+      <Link to={`/profile/${blab.username}`} style={{ textDecoration: 'none'}}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" style={{backgroundColor: '#2196f3'}}>
             <FaceIcon/>
           </Avatar>
         }
-        title={thought.username}
-        subheader={thought.createdAt}
+        title={blab.username}
+        subheader={blab.createdAt}
       />
       </Link>
       <CardMedia
@@ -47,9 +47,9 @@ const ThoughtList = ({ thoughts, title }) => {
       />
 
       <CardContent>
-      <Link to={`/thought/${thought._id}`} style={{ textDecoration: 'none'}}>
+      <Link to={`/blab/${blab._id}`} style={{ textDecoration: 'none'}}>
         <Typography variant="body2" component="p">
-        {thought.thoughtText}
+        {blab.blabText}
         </Typography>
         </Link>
       </CardContent>
@@ -62,12 +62,12 @@ const ThoughtList = ({ thoughts, title }) => {
         <Typography>#oflikes</Typography>
        
         
-        <Link to={`/thought/${thought._id}`}>
+        <Link to={`/blab/${blab._id}`}>
          <IconButton aria-label="comment">
          <CommentIcon/>
         </IconButton>
           </Link>
-          <Typography>{thought.reactionCount}</Typography>
+          <Typography>{blab.commentCount}</Typography>
         </CardActions>
         
     </Card>
@@ -79,4 +79,4 @@ const ThoughtList = ({ thoughts, title }) => {
   )
 };
 
-export default ThoughtList;
+export default BlabList;

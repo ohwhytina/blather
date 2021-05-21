@@ -4,7 +4,7 @@ import { Divider, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Av
 import FaceIcon from '@material-ui/icons/Face';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-const ReactionList = ({ reactions }) => {
+const CommentList = ({ comments }) => {
   return (
 
     <div style={{ width: '100%'}}>
@@ -14,24 +14,24 @@ const ReactionList = ({ reactions }) => {
         flexWrap="wrap"
         justifyContent="center"
     >
-      {reactions &&
-          reactions.map(reaction => (   
+      {comments &&
+          comments.map(comment => (   
     <Box p={1}>
     <Card>
-    <Link to={`/profile/${reaction.username}`}>
+    <Link to={`/profile/${comment.username}`}>
         <CardHeader
         avatar={
           <Avatar aria-label="recipe" style={{backgroundColor: '#2196f3'}}>
             <FaceIcon/>
           </Avatar>
         }
-        title={reaction.username}
-        subheader={reaction.createdAt}
+        title={comment.username}
+        subheader={comment.createdAt}
       />
       </Link>
      <CardContent>
-        <Typography variant="body2" component="p" key={reaction._id}>
-        {reaction.reactionBody}
+        <Typography variant="body2" component="p" key={comment._id}>
+        {comment.commentBody}
         </Typography>
         </CardContent>
         <Divider/>
@@ -50,4 +50,4 @@ const ReactionList = ({ reactions }) => {
   );
 };
 
-export default ReactionList;
+export default CommentList;

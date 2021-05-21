@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useMutation } from '@apollo/react-hooks';
-import { ADD_REACTION } from '../../utils/mutations';
+import { ADD_COMMENT } from '../../utils/mutations';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ReactionForm = ({ thoughtId }) => {
+const CommentForm = ({ blabId }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -35,9 +35,9 @@ const ReactionForm = ({ thoughtId }) => {
     setOpen(false);
   };
 
-  const [reactionBody, setBody] = useState('');
+  const [commentBody, setBody] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-  const [addReaction, { error }] = useMutation(ADD_REACTION);
+  const [addComment, { error }] = useMutation(ADD_COMMENT);
 
   // update state based on form input changes
   const handleChange = event => {
@@ -52,8 +52,8 @@ const ReactionForm = ({ thoughtId }) => {
     event.preventDefault();
 
     try {
-      await addReaction({
-        variables: { reactionBody, thoughtId }
+      await addComment({
+        variables: { commentBody, blabId }
       });
 
       // clear form value
@@ -101,7 +101,7 @@ const ReactionForm = ({ thoughtId }) => {
                     row="40"
                     variant="outlined"
                     className={`${characterCount === 280 || error ? 'text-error' : ''}`}
-                       value={reactionBody}
+                       value={commentBody}
                       onChange={handleChange}
                   />
                   Character Count: {characterCount}/280
@@ -126,4 +126,4 @@ const ReactionForm = ({ thoughtId }) => {
   );
 };
 
-export default ReactionForm;
+export default CommentForm;
