@@ -1,18 +1,18 @@
 import React from 'react';
-import ThoughtList from '../components/ThoughtList';
+import BlabList from '../components/BlabList';
 import FriendList from '../components/FriendList';
 
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_THOUGHTS, QUERY_ME_BASIC } from '../utils/queries';
+import { QUERY_BLABS, QUERY_ME_BASIC } from '../utils/queries';
 
 import { Divider } from '@material-ui/core/';
 
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const { loading, data } = useQuery(QUERY_BLABS);
   const { data: userData } = useQuery(QUERY_ME_BASIC);
-  const thoughts = data?.thoughts || [];
+  const blabs = data?.blabs || [];
 
   const loggedIn = Auth.loggedIn();
 
@@ -24,7 +24,7 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <ThoughtList thoughts={thoughts} title="Welcome to the Blabs!" />
+            <BlabList blabs={blabs} title="Welcome to the Blabs!" />
           )}
         </div>
       </div>

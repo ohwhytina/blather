@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import ThoughtForm from '../components/ThoughtForm';
-import ThoughtList from '../components/ThoughtList';
+import BlabForm from '../components/BlabForm';
+import BlabList from '../components/BlabList';
 import FriendList from '../components/FriendList';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -57,7 +57,7 @@ const Profile = props => {
         <Typography variant="h4">
           Viewing {userParam ? `${user.username}'s` : 'your'} Profile.
         </Typography>
-        <div>{!userParam && <ThoughtForm />}</div>
+        <div>{!userParam && <BlabForm />}</div>
 
         <Box p={2}>
         {userParam && (
@@ -71,7 +71,7 @@ const Profile = props => {
 
       <div className="flex-row justify-space-between mb-3">
         <Typography>
-          <ThoughtList thoughts={user.thoughts} title={`${user.username}'s Blabs`} />
+          <BlabList blabs={user.blabs} title={`${user.username}'s Blabs`} />
         </Typography>
         <Divider/>
         <div className="col-12 col-lg-3 mb-3">
