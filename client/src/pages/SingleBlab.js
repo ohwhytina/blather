@@ -1,26 +1,26 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import ReactionList from '../components/ReactionList';
-import ReactionForm from '../components/ReactionForm';
+import CommentList from '../components/CommentList';
+import CommentForm from '../components/CommentForm';
 
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_THOUGHT } from '../utils/queries';
+import { QUERY_BLAB } from '../utils/queries';
 
 import { Divider, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, ButtonBase} from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
-const SingleThought = props => {
-  const { id: thoughtId } = useParams();
+const SingleBlab = props => {
+  const { id: blabId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_THOUGHT, {
-    variables: { id: thoughtId }
+  const { loading, data } = useQuery(QUERY_BLAB, {
+    variables: { id: blabId }
   });
 
-  const thought = data?.thought || {};
+  const blab = data?.blab || {};
 
   if (loading) {
     return <div>Loading...</div>;
@@ -41,8 +41,8 @@ const SingleThought = props => {
             <FaceIcon/>
           </Avatar>
         }
-        title={thought.username}
-        subheader={thought.createdAt}
+        title={blab.username}
+        subheader={blab.createdAt}
       />
       <CardMedia
       style={{height: 0, paddingTop: '56.25%'}}
@@ -51,7 +51,7 @@ const SingleThought = props => {
       />
       <CardContent>
         <Typography variant="body2" component="p">
-        {thought.thoughtText}
+        {blab.blabText}
         </Typography>
       </CardContent>
       <Divider />
@@ -64,11 +64,11 @@ const SingleThought = props => {
     </Card>
     </Box>
     </Box>
-    {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
+    {Auth.loggedIn() && <CommentForm blabId={blab._id} />}
     <Divider variant="middle" />
-    {thought.reactionCount > 0 && <ReactionList reactions={thought.reactions} />}
+    {blab.commentCount > 0 && <CommentList comments={blab.comments} />}
     </div>
   );
 };
 
-export default SingleThought;
+export default SingleBlab;
