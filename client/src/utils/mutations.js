@@ -35,58 +35,68 @@ mutation addBlabImage($blabText: String,$imageUrl: String){
   }
 }
 `;
+export const ADD_BLAB_IMAGE = gql `
+mutation addBlabImage($blabText: String,$imageUrl: String){
+  addBlabImage(blabText: $blabText, imageUrl: $imageUrl){
+    _id
+    blabText
+    username
+    imageUrl
+    createdAt
+    }
+}`;
 
 export const ADD_COMMENT = gql `
-  mutation addComment($blabId: ID!, $commentBody: String!) {
+mutation addComment($blabId: ID!, $commentBody: String!) {
     addComment(blabId: $blabId, commentBody: $commentBody) {
-      _id
-      commentCount
-      comments {
         _id
-        commentBody
-        createdAt
-        username
-      }
+        commentCount
+        comments {
+            _id
+            commentBody
+            createdAt
+            username
+        }
     }
-  }
+}
 `;
 
 export const ADD_FRIEND = gql `
-  mutation addFriend($id: ID!) {
+mutation addFriend($id: ID!) {
     addFriend(friendId: $id) {
-      _id
-      username
-      friendCount
-      friends {
         _id
         username
-      }
+        friendCount
+        friends {
+            _id
+            username
+        }
     }
-  }
+}
 `;
 export const ADD_LIKE = gql `
-  mutation addLike($id: ID!) {
+mutation addLike($id: ID!) {
     addLike(likeId: $id) {
-      _id
-      username
-      likeCount
-      likes {
         _id
         username
-      }
+        likeCount
+        likes {
+            _id
+            username
+        }
     }
-  }
+}
 `;
 
 export const REMOVE_FRIEND = gql `
-  mutation removeFriend($id: ID!) {
+mutation removeFriend($id: ID!) {
     removeFriend(id: $id) {
-      _id
-      username
-      friends {
         _id
         username
-      }
+        friends {
+            _id
+            username
+        }
     }
-  }
+}
 `;
