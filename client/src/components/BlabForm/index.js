@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Image from '../Image'
+// import Image from '../Image'
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_BLAB } from '../../utils/mutations';
 import { QUERY_BLABS, QUERY_ME } from '../../utils/queries';
@@ -135,7 +135,7 @@ const BlabForm = () => {
             </Grid>
 
            <Box>
-             <Image></Image>
+             {/* <Image></Image> */}
            </Box>
             
           <Box display="flex" m={1} p={1} bgcolor="background.paper">

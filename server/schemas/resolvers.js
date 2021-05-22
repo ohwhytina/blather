@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Blab, Image, Comments } = require('../models');
+const { User, Blab } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -35,17 +35,7 @@ const resolvers = {
         blab: async(parent, { _id }) => {
             return Blab.findOne({ _id });
         },
-        imagesByUser: async(parent, {
-            username
-        }) => {
-            const params = username ? {
-                username
-            } : {};
 
-            return Image.find(params).sort({
-                createdAt: -1
-            });
-        },
     },
     Mutation: {
         addUser: async(parent, args) => {
@@ -73,6 +63,17 @@ const resolvers = {
         addBlab: async(parent, args, context) => {
             if (context.user) {
                 const blab = await Blab.create({...args, username: context.user.username });
+
+                await User.findByIdAndUpdate({ _id: context.user._id }, { $push: { blabs: blab._id } }, { new: true });
+
+                return blab;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addBlabImage: async(parent, { blabText, imageUrl }, context) => {
+            if (context.user) {
+                const blab = await Blab.create({ blabText: blabText, imageUrl: imageUrl, username: context.user.username });
 
                 await User.findByIdAndUpdate({ _id: context.user._id }, { $push: { blabs: blab._id } }, { new: true });
 

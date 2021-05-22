@@ -8,12 +8,13 @@ const typeDefs = gql `
     friendCount: Int
     blabs: [Blab]
     friends: [User]
-    images: [Image]
+
   }
 
   type Blab {
     _id: ID
     blabText: String
+    imageUrl: String
     createdAt: String
     username: String
     commentCount: Int
@@ -27,12 +28,7 @@ const typeDefs = gql `
     username: String
   }
 
-  type Image {
-    _id: ID
-    url: String
-    caption: String
-    createdAt: String
-  }
+
 
   type Auth {
     token: ID!
@@ -45,21 +41,18 @@ const typeDefs = gql `
     user(username: String!): User
     blabs(username: String): [Blab]
     blab(_id: ID!): Blab
-    imagesByUser(username: String!): [Image]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addBlab(blabText: String!): Blab
+    addBlabImage(blabText: String, imageUrl: String): Blab
     likeBlab(_id: ID): Blab
     addComment(blabId: ID!, commentBody: String!): Blab
     addFriend(friendId: ID!): User
     likeComment(_id:ID): Comment
-    addImage(url: String!, caption: String!, username: String!): [Image]
   }
 `;
 
 module.exports = typeDefs;
-
-// imagesByUser(username: String!): [Image]

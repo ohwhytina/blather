@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const LOGIN_USER = gql`
+export const LOGIN_USER = gql `
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
@@ -12,7 +12,7 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const ADD_USER = gql`
+export const ADD_USER = gql `
   mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
       token
@@ -24,22 +24,19 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_BLAB = gql`
-  mutation addBlab($blabText: String!) {
-    addBlab(blabText: $blabText) {
-      _id
-      blabText
-      createdAt
-      username
-      commentCount
-      comments {
-        _id
-      }
-    }
+export const ADD_BLAB = gql `
+mutation addBlabImage($blabText: String,$imageUrl: String){
+  addBlabImage(blabText: $blabText, imageUrl: $imageUrl){
+    _id
+    username
+    imageUrl
+    createdAt
+    
   }
+}
 `;
 
-export const ADD_COMMENT = gql`
+export const ADD_COMMENT = gql `
   mutation addComment($blabId: ID!, $commentBody: String!) {
     addComment(blabId: $blabId, commentBody: $commentBody) {
       _id
@@ -54,7 +51,7 @@ export const ADD_COMMENT = gql`
   }
 `;
 
-export const ADD_FRIEND = gql`
+export const ADD_FRIEND = gql `
   mutation addFriend($id: ID!) {
     addFriend(friendId: $id) {
       _id
@@ -67,7 +64,7 @@ export const ADD_FRIEND = gql`
     }
   }
 `;
-export const ADD_LIKE = gql`
+export const ADD_LIKE = gql `
   mutation addLike($id: ID!) {
     addLike(likeId: $id) {
       _id
@@ -81,7 +78,7 @@ export const ADD_LIKE = gql`
   }
 `;
 
-export const REMOVE_FRIEND = gql`
+export const REMOVE_FRIEND = gql `
   mutation removeFriend($id: ID!) {
     removeFriend(id: $id) {
       _id
