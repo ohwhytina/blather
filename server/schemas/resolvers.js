@@ -99,6 +99,14 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
+        addImage: async(parent, args, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { images: { url, caption } } }, { new: true }).populate('images');
+
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
 
         likeBlab: async(parent, { _id }, context) => {
             if (context.user) {

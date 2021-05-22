@@ -56,8 +56,7 @@ const typeDefs = gql `
     addComment(blabId: ID!, commentBody: String!): Blab
     addFriend(friendId: ID!): User
     likeComment(_id:ID): Comment
-    addImage(url: String!, caption: String!, username: String!): [Image]
-  }
+    addImage(url: String!, caption: String! ): Image  }
 `;
 
 module.exports = typeDefs;

@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { Box, Button, Container, Grid, IconButton, TextField, Typography} from '@material-ui/core/';
+import { Box, Button, Container, Grid, IconButton, TextField, Typography } from '@material-ui/core/';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 
 const useStyles = makeStyles((theme) => ({
@@ -91,11 +91,11 @@ const BlabForm = () => {
 
   return (
     <div>
-        <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
+      <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
         <Button color="secondary" onClick={handleOpen} type="submit" variant="contained">
-            CREATE A BLAB!
+          CREATE A BLAB!
         </Button>
-        </Box>
+      </Box>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -110,44 +110,44 @@ const BlabForm = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-          <div><Container maxWidth="sm">
-        <form onSubmit={handleFormSubmit}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    label="What do you want to Blab about?"
-                    name="Blabinfo"
-                    size="large"
-                    multiline="bool"
-                    row="40"
-                    variant="outlined"
-                    className={`${characterCount === 280 || error ? 'text-error' : ''}`}
-                       value={blabText}
-                      onChange={handleChange}
-                  />
-                  <Typography>Character Count: {characterCount}/280</Typography>
-                  {error && <span className="ml-2">Something went wrong...</span>}
-                </Grid>
-              </Grid>
-            </Grid>
+            <div><Container maxWidth="sm">
+              <form onSubmit={handleFormSubmit}>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          label="What do you want to Blab about?"
+                          name="Blabinfo"
+                          size="large"
+                          multiline="bool"
+                          row="40"
+                          variant="outlined"
+                          className={`${characterCount === 280 || error ? 'text-error' : ''}`}
+                          value={blabText}
+                          onChange={handleChange}
+                        />
+                        <Typography>Character Count: {characterCount}/280</Typography>
+                        {error && <span className="ml-2">Something went wrong...</span>}
+                      </Grid>
+                    </Grid>
+                  </Grid>
 
-           <Box>
-             <Image></Image>
-           </Box>
-            
-          <Box display="flex" m={1} p={1} bgcolor="background.paper">
-        <Button color="secondary" type="submit" variant="contained">
-            Blab away!
+                  <Box>
+                    <Image></Image>
+                  </Box>
+
+                  <Box display="flex" m={1} p={1} bgcolor="background.paper">
+                    <Button color="secondary" type="submit" variant="contained">
+                      Blab away!
         </Button>
-        </Box>
-          </Grid>
-         
-        </form>
-      </Container>
-      </div>
+                  </Box>
+                </Grid>
+
+              </form>
+            </Container>
+            </div>
           </div>
         </Fade>
       </Modal>
