@@ -71,17 +71,6 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
-        addBlabImage: async(parent, { blabText, imageUrl }, context) => {
-            if (context.user) {
-                const blab = await Blab.create({ blabText: blabText, imageUrl: imageUrl, username: context.user.username });
-
-                await User.findByIdAndUpdate({ _id: context.user._id }, { $push: { blabs: blab._id } }, { new: true });
-
-                return blab;
-            }
-
-            throw new AuthenticationError('You need to be logged in!');
-        },
         addComment: async(parent, { blabId, commentBody }, context) => {
             if (context.user) {
                 const updatedBlab = await Blab.findOneAndUpdate({ _id: blabId }, { $push: { comments: { commentBody, username: context.user.username } } }, { new: true, runValidators: true });

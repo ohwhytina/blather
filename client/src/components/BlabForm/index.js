@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {ADD_BLAB_TEXT } from '../../utils/actions';
  import Image from '../Image'
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_BLAB} from '../../utils/mutations';
@@ -93,6 +94,10 @@ const BlabForm = () => {
         console.error(e);
       }
    };
+  //  const [state, dispatch] = useStoreContext();
+
+  //  const { blabText, imageUrl } = state;
+   
 
   return (
     <div>

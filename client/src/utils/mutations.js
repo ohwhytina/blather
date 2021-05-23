@@ -35,16 +35,6 @@ mutation addBlabImage($blabText: String,$imageUrl: String){
   }
 }
 `;
-export const ADD_BLAB_IMAGE = gql `
-mutation addBlabImage($blabText: String,$imageUrl: String){
-  addBlabImage(blabText: $blabText, imageUrl: $imageUrl){
-    _id
-    blabText
-    username
-    imageUrl
-    createdAt
-    }
-}`;
 
 export const ADD_COMMENT = gql `
 mutation addComment($blabId: ID!, $commentBody: String!) {

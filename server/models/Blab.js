@@ -10,7 +10,8 @@ const blabSchema = new Schema({
         maxlength: 280
     },
     imageUrl: {
-        type: String
+        type: String,
+        default: ""
     },
     createdAt: {
         type: Date,
