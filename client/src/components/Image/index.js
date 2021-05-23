@@ -7,9 +7,7 @@ const Image = props => {
     const [imageState, setImageState] = useState("");
     const handleSuccess=(result) => { 
         setImageState(result.info.url)
-          props.thisImageData(imageState);
-          console.log("URL: "+ result.info.url) ;
-
+        console.log("URL: "+ result.info.url) ;
         }
       
     const cloudName = "jaderiver54";

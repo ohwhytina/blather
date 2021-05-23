@@ -1,0 +1,2 @@
+export const UPDATE_BLAB_TEXT = "UPDATE_BLAB_TEXT";
+export const UPDATE_BLAB_IMAGE = "UPDATE_BLAB_IMAGE";
