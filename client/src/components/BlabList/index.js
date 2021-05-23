@@ -43,7 +43,7 @@ const BlabList = ({ blabs, title }) => {
       <CardMedia
       style={{height: 0, paddingTop: '56.25%'}}
         image="https://res.cloudinary.com/tinablab/image/upload/v1621565724/Jasper_o9dcn9.jpg"
-        title="Paella dish"
+        title=""
       />
 
       <CardContent>

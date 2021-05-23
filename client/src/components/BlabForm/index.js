@@ -129,7 +129,7 @@ const BlabForm = () => {
                       onChange={handleChange}
                   />
                   <Typography>Character Count: {characterCount}/280</Typography>
-                  {error && <span className="ml-2">Something went wrong...</span>}
+                  {error && <span>Something went wrong...</span>}
                 </Grid>
               </Grid>
             </Grid>
