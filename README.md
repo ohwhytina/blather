@@ -12,7 +12,7 @@
 An application that lets you share quick thoughts with others while following other and seeing their thoughts. 
 
 ## Installation
-git clone or download files, add a .env file with your Cloudinary Cloud Name and set it to the (process.env) variable "CLOUD_NAME",  npm i, npm run start
+git clone or download files, add a .env file with your Cloudinary Cloud Name and set it to the (process.env) variable "CLOUD_NAME",  npm i, npm run start - to seed using faker data run: npm run seed
 
 ## Usage
 Material UI, Apollo, Graphql, JWT-decode, React, Express, Mongoose, Mongodb, Cloudinary
