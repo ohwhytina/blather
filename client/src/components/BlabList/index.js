@@ -62,10 +62,10 @@ const BlabList = ({ blabs, title }) => {
                 <Divider />
                 <CardActions>
 
-                  <IconButton aria-label="click to like">
+                  {/* <IconButton aria-label="click to like">
                     <FavoriteIcon />
                   </IconButton>
-                  <Typography>#oflikes</Typography>
+                  <Typography>#oflikes</Typography> */}
 
 
                   <Link to={`/blab/${blab._id}`}>

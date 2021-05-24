@@ -14,12 +14,10 @@
     "axios": "^0.21.1",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
-
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",
     "react-cloudinary-upload-widget": "^1.4.3",
     "react-dom": "^16.13.1",
-
     "react-router-dom": "^5.1.2",
     "react-scripts": "4.0.3",
     "react-window": "^1.8.6"

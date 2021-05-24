@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Divider, Box, Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Typography} from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
 const CommentList = ({ comments }) => {
