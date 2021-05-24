@@ -3,13 +3,16 @@ import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget'
 import React, { useState, useEffect } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_BLAB_IMAGE } from '../../utils/actions';
+import { ADD_IMAGE } from '../../utils/mutations';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 
-const Image = props => {
+const Image = ({thisBlabId}) => {
     const [state, dispatch] = useStoreContext();
     const { imageUrl } = state;
+    const [addImage, { error }] = useMutation(ADD_IMAGE);
 
-    const handleSuccess = (result) => {
-        const newUrl = JSON.stringify(result.info.url);
+    const handleSuccess = async (result) => {
+        const newUrl = result.info.url;
         console.log("URL: " + newUrl);
         if (newUrl) {
             dispatch({
@@ -17,9 +20,17 @@ const Image = props => {
                 imageUrl: newUrl
             })
         }
+        try {
+            await addImage({
+              variables: { blabId: thisBlabId, imageUrl: newUrl }
+            });
+      
+          } catch (e) {
+            console.error(e);
+          }
     }
   
-    const cloudName = "jaderiver54";
+    const cloudName = process.env.CLOUD_NAME;
     return (
         <>
             <WidgetLoader />
@@ -32,9 +43,9 @@ const Image = props => {
                     color: 'white',
                     border: 'none',
                     width: '120px',
-                    backgroundColor: 'green',
+                    backgroundColor: 'grey',
                     borderRadius: '4px',
-                    height: '25px'
+                    height: '30px',
                 }} // inline styling only or style id='cloudinary_upload_button'
                 onSuccess={handleSuccess}
                 onFailure={(res) => console.log(res)} // add failure callback

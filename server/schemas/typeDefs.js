@@ -49,6 +49,7 @@ const typeDefs = gql `
     addBlab(blabText: String!, imageUrl: String): Blab
     addComment(blabId: ID!, commentBody: String!): Blab
     addFriend(friendId: ID!): User
+    addImage(blabId: ID!, imageUrl: String!): Blab
   }
 `;
 

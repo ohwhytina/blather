@@ -25,17 +25,30 @@ export const ADD_USER = gql `
 `;
 
 export const ADD_BLAB = gql `
-mutation addBlabImage($blabText: String,$imageUrl: String){
-  addBlabImage(blabText: $blabText, imageUrl: $imageUrl){
-    _id
-    username
-    imageUrl
-    createdAt
-    
-  }
+mutation addBlab($blabText: String!) {
+    addBlab(blabText: $blabText) {
+        _id
+        blabText
+        createdAt
+        imageUrl
+        username
+        commentCount
+        comments {
+            _id
+        }
+    }
 }
 `;
-
+export const ADD_IMAGE = gql `
+mutation addImage($blabId: ID!, $imageUrl: String!){
+  addImage(blabId: $blabId, imageUrl: $imageUrl){
+    _id
+    blabText
+    createdAt
+    imageUrl
+    username
+  }
+}`;
 export const ADD_COMMENT = gql `
 mutation addComment($blabId: ID!, $commentBody: String!) {
     addComment(blabId: $blabId, commentBody: $commentBody) {

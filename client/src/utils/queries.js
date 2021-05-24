@@ -7,6 +7,7 @@ export const QUERY_BLABS = gql `
       blabText
       createdAt
       username
+      imageUrl
       commentCount
       comments {
         _id
@@ -25,6 +26,7 @@ export const QUERY_BLAB = gql `
       blabText
       createdAt
       username
+      imageUrl
       commentCount
       comments {
         _id
@@ -52,6 +54,7 @@ export const QUERY_USER = gql `
         blabText
         createdAt
         commentCount
+        imageUrl
       }
     }
   }
@@ -67,6 +70,7 @@ export const QUERY_ME = gql `
       blabs {
         _id
         blabText
+        imageUrl
         createdAt
         commentCount
         comments {

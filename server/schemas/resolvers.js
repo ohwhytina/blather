@@ -89,6 +89,15 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
+        addImage: async(parent, { blabId, imageUrl }, context) => {
+            if (context.user) {
+                const updatedUser = await Blab.findOneAndUpdate({ _id: blabId }, { imageUrl: imageUrl }, { new: true }).populate('friends');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
 
         //     likeBlab: async(parent, { _id, currentLikes }, context) => {
         //         if (context.user) {

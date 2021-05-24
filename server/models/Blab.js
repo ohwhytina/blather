@@ -9,7 +9,7 @@ const blabSchema = new Schema({
     },
     imageUrl: {
         type: String,
-        default: ""
+        default: "https://res.cloudinary.com/tinablab/image/upload/v1621565724/Jasper_o9dcn9.jpg"
     },
     createdAt: {
         type: Date,

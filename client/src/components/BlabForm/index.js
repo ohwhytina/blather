@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
- import Image from '../Image'
-//  import { ADD_BLAB } from '../../utils/mutations';
-import { useMutation } from '@apollo/react-hooks';
+ import { ADD_BLAB } from '../../utils/mutations';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import { QUERY_BLABS, QUERY_ME } from '../../utils/queries';
 import { useStoreContext } from "../../utils/GlobalState";
-import { UPDATE_BLAB_TEXT, ADD_BLAB} from '../../utils/actions';
+import { UPDATE_BLABS, UPDATE_BLAB_TEXT } from '../../utils/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -27,11 +26,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BlabForm = () => {
+const BlabForm = () => {  
+
+  const [characterCount, setCharacterCount] = useState(0);
+
   const [state, dispatch] = useStoreContext();
-  const {blabText, imageUrl} = state;
+  const {  blabs } = state;
+
   const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
+  
+  const { data: blabData } = useQuery(QUERY_BLABS);
+
+  useEffect(() => {
+    if (blabData) {
+      dispatch({
+        type: UPDATE_BLABS,
+        blabs: blabData.blabs
+      });
+    }
+  }, [blabData, dispatch]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -40,9 +55,7 @@ const BlabForm = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-
-  const [characterCount, setCharacterCount] = useState(0);
+  const [blabText, setText] = useState('');
 
   const [addBlab, { error }] = useMutation(ADD_BLAB, {
     update(cache, { data: { addBlab } }) {
@@ -66,46 +79,33 @@ const BlabForm = () => {
       });
     }
   });
-  // const addToBlabs = () => {
-  //   dispatch({
-  //     type: ADD_BLAB,
-  //     blabText: blabText,
-  //     imageUrl: imageUrl
-  //   });
-  // };
-  //, blabs
 
   // update state based on form input changes
   const handleChange = event => {
-    const currentText = event.target.value;
-    if (currentText.length <= 280) {
-          setCharacterCount(currentText.length);
-          dispatch({
-            type: UPDATE_BLAB_TEXT,
-            blabText: currentText
-          });
+    if (event.target.value.length <= 280) {
+      setText(event.target.value);
+      setCharacterCount(event.target.value.length);
     }
-    
   };
 
   // submit form
   const handleFormSubmit = async event => {
     event.preventDefault();
 
-      try {
+    try {
+      await addBlab({
+        variables: { blabText }
+      });
 
-        await addBlab({
-          variables: { blabText, imageUrl }
-        });
+      // clear form value
+      setText('');
+      setCharacterCount(0);
+      handleClose();
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-        // clear form value
-        // setText('');
-        setCharacterCount(0);
-        handleClose();
-      } catch (e) {
-        console.error(e);
-      }
-   };
 
   return (
     <div>
@@ -142,19 +142,16 @@ const BlabForm = () => {
                           multiline="bool"
                           row="40"
                           variant="outlined"
-                          className={`${characterCount === 280 || error ? 'text-error' : ''}`}
+                          // className={`${characterCount === 280 || error ? 'text-error' : ''}`}
                           value={blabText}
                           onChange={handleChange}
                         />
                         <Typography>Character Count: {characterCount}/280</Typography>
-                        {error && <span className="ml-2">Something went wrong...</span>}
+                        {error && <span>Something went wrong...</span>} 
                       </Grid>
                     </Grid>
                   </Grid>
 
-                  <Box>
-                    <Image></Image>
-                  </Box>
 
                   <Box display="flex" m={1} p={1} bgcolor="background.paper">
                     <Button color="secondary" type="submit" variant="contained">
