@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Blab, Image, Comments } = require('../models');
+const { User, Blab } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -35,17 +35,7 @@ const resolvers = {
         blab: async(parent, { _id }) => {
             return Blab.findOne({ _id });
         },
-        imagesByUser: async(parent, {
-            username
-        }) => {
-            const params = username ? {
-                username
-            } : {};
 
-            return Image.find(params).sort({
-                createdAt: -1
-            });
-        },
     },
     Mutation: {
         addUser: async(parent, args) => {
@@ -106,37 +96,69 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
 
-        async addLike(_, { blabId }, context) {
-            const { username } = checkAuth(context);
-      
-            const blab = await Blab.findById(blabId);
-            if (blab) {
-              if (blab.likes.find((like) => like.username === username)) {
-                // Blab already likes, unlike it
-                blab.likes = blab.likes.filter((like) => like.username !== username);
-              } else {
-                // Not liked, like Blab
-                blab.likes.push({
-                  username,
-                  createdAt: new Date().toISOString()
-                });
-              }
-      
-              await blab.save();
-              return blab;
-            } else throw new UserInputError('Blab not found');
-          },
-        
-        likeComment: async(parent, { _id }, context) => {
+        addImage: async(parent, { blabId, imageUrl }, context) => {
             if (context.user) {
-                const retrieveComment = await comment.find(_id);
-                let currentLikes = retrieveComment.likes;
-                currentLikes++;
-                return Comment.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
+                const updatedUser = await Blab.findOneAndUpdate({ _id: blabId }, { imageUrl: imageUrl }, { new: true }).populate('friends');
 
+                return updatedUser;
             }
+
             throw new AuthenticationError('You need to be logged in!');
         },
+
+        //     likeBlab: async(parent, { _id, currentLikes }, context) => {
+        //         if (context.user) {
+        //             const retrieveBlab = await Blab.find(_id);
+        //             return blab.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
+
+        //         }
+        //         throw new AuthenticationError('You need to be logged in!');
+
+        //     },
+        //     likeComment: async(parent, { _id }, context) => {
+        //         if (context.user) {
+        //             const retrieveComment = await comment.find(_id);
+        //             let currentLikes = retrieveComment.likes;
+        //             currentLikes++;
+        //             return Comment.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
+
+        //         }
+        //         throw new AuthenticationError('You need to be logged in!');
+
+        //     }
+
+
+//         async addLike(_, { blabId }, context) {
+//             const { username } = checkAuth(context);
+      
+//             const blab = await Blab.findById(blabId);
+//             if (blab) {
+//               if (blab.likes.find((like) => like.username === username)) {
+//                 // Blab already likes, unlike it
+//                 blab.likes = blab.likes.filter((like) => like.username !== username);
+//               } else {
+//                 // Not liked, like Blab
+//                 blab.likes.push({
+//                   username,
+//                   createdAt: new Date().toISOString()
+//                 });
+//               }
+      
+//               await blab.save();
+//               return blab;
+//             } else throw new UserInputError('Blab not found');
+//           },
+        
+//         likeComment: async(parent, { _id }, context) => {
+//             if (context.user) {
+//                 const retrieveComment = await comment.find(_id);
+//                 let currentLikes = retrieveComment.likes;
+//                 currentLikes++;
+//                 return Comment.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
+
+//             }
+//             throw new AuthenticationError('You need to be logged in!');
+//         },
         removeFriend: async (parent, { friendId }, context) => {
             if (context.user) {
       
@@ -163,6 +185,7 @@ const resolvers = {
           }
           throw new AuthenticationError('You need to be logged in!');
           }
+
 
     }
 };

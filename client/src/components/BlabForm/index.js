@@ -1,16 +1,22 @@
+
+import React, { useState, useEffect } from "react";
+ import { ADD_BLAB } from '../../utils/mutations';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+
 import React, { useState } from 'react';
 
-// import Image from '../Image'
 
-import { useMutation } from '@apollo/react-hooks';
-import { ADD_BLAB } from '../../utils/mutations';
 import { QUERY_BLABS, QUERY_ME } from '../../utils/queries';
-
+import { useStoreContext } from "../../utils/GlobalState";
+import { UPDATE_BLABS, UPDATE_BLAB_TEXT } from '../../utils/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { Box, Button, Container, Grid, TextField, Typography} from '@material-ui/core/';
+
+import { Box, Button, Container, Grid, IconButton, TextField, Typography } from '@material-ui/core/';
+import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
+import { image } from "@cloudinary/base/qualifiers/source";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,9 +33,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BlabForm = () => {
+const BlabForm = () => {  
+
+  const [characterCount, setCharacterCount] = useState(0);
+
+  const [state, dispatch] = useStoreContext();
+  const {  blabs } = state;
+
   const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
+  
+  const { data: blabData } = useQuery(QUERY_BLABS);
+
+  useEffect(() => {
+    if (blabData) {
+      dispatch({
+        type: UPDATE_BLABS,
+        blabs: blabData.blabs
+      });
+    }
+  }, [blabData, dispatch]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -38,9 +62,7 @@ const BlabForm = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
   const [blabText, setText] = useState('');
-  const [characterCount, setCharacterCount] = useState(0);
 
   const [addBlab, { error }] = useMutation(ADD_BLAB, {
     update(cache, { data: { addBlab } }) {
@@ -91,13 +113,14 @@ const BlabForm = () => {
     }
   };
 
+
   return (
     <div>
-        <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
+      <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
         <Button color="secondary" onClick={handleOpen} type="submit" variant="contained">
-            CREATE A BLAB!
+          CREATE A BLAB!
         </Button>
-        </Box>
+      </Box>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -112,44 +135,43 @@ const BlabForm = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-          <div><Container maxWidth="sm">
-        <form onSubmit={handleFormSubmit}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    label="What do you want to Blab about?"
-                    name="Blabinfo"
-                    size="large"
-                    multiline="bool"
-                    row="40"
-                    variant="outlined"
-                    className={`${characterCount === 280 || error ? 'text-error' : ''}`}
-                       value={blabText}
-                      onChange={handleChange}
-                  />
-                  <Typography>Character Count: {characterCount}/280</Typography>
-                  {error && <span>Something went wrong...</span>}
-                </Grid>
-              </Grid>
-            </Grid>
 
-           {/* <Box>
-             <Image></Image>
-           </Box> */}
-            
-          <Box display="flex" m={1} p={1} bgcolor="background.paper">
-        <Button color="secondary" type="submit" variant="contained">
-            Blab away!
+            <div><Container maxWidth="sm">
+              <form onSubmit={handleFormSubmit}>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          label="What do you want to Blab about?"
+                          name="Blabinfo"
+                          size="large"
+                          multiline="bool"
+                          row="40"
+                          variant="outlined"
+                          // className={`${characterCount === 280 || error ? 'text-error' : ''}`}
+                          value={blabText}
+                          onChange={handleChange}
+                        />
+                        <Typography>Character Count: {characterCount}/280</Typography>
+                        {error && <span>Something went wrong...</span>} 
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+
+                  <Box display="flex" m={1} p={1} bgcolor="background.paper">
+                    <Button color="secondary" type="submit" variant="contained">
+                      Blab away!
+
         </Button>
-        </Box>
-          </Grid>
-         
-        </form>
-      </Container>
-      </div>
+                  </Box>
+                </Grid>
+
+              </form>
+            </Container>
+            </div>
           </div>
         </Fade>
       </Modal>

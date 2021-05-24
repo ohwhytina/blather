@@ -1,12 +1,13 @@
 import gql from 'graphql-tag';
 
-export const QUERY_BLABS = gql`
+export const QUERY_BLABS = gql `
   query blabs($username: String) {
     blabs(username: $username) {
       _id
       blabText
       createdAt
       username
+      imageUrl
       commentCount
       comments {
         _id
@@ -18,13 +19,14 @@ export const QUERY_BLABS = gql`
   }
 `;
 
-export const QUERY_BLAB = gql`
+export const QUERY_BLAB = gql `
   query blab($id: ID!) {
     blab(_id: $id) {
       _id
       blabText
       createdAt
       username
+      imageUrl
       commentCount
       comments {
         _id
@@ -36,7 +38,7 @@ export const QUERY_BLAB = gql`
   }
 `;
 
-export const QUERY_USER = gql`
+export const QUERY_USER = gql `
   query user($username: String!) {
     user(username: $username) {
       _id
@@ -52,12 +54,13 @@ export const QUERY_USER = gql`
         blabText
         createdAt
         commentCount
+        imageUrl
       }
     }
   }
 `;
 
-export const QUERY_ME = gql`
+export const QUERY_ME = gql `
   {
     me {
       _id
@@ -67,6 +70,7 @@ export const QUERY_ME = gql`
       blabs {
         _id
         blabText
+        imageUrl
         createdAt
         commentCount
         comments {
@@ -84,7 +88,7 @@ export const QUERY_ME = gql`
   }
 `;
 
-export const QUERY_ME_BASIC = gql`
+export const QUERY_ME_BASIC = gql `
   {
     me {
       _id

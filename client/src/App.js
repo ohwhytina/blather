@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-
+import { StoreProvider } from "./utils/GlobalState";
 import Header from './components/Header';
 
 import Home from './pages/Home';
@@ -30,17 +30,19 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <Route exact path="/profile/:username?" component={Profile} />
-              <Route exact path="/blab/:id" component={SingleBlab} />
-              <Route component={NoMatch} />
-            </Switch>
-          </div>
+          <StoreProvider>
+            <Header />
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={Signup} />
+                <Route exact path="/profile/:username?" component={Profile} />
+                <Route exact path="/blab/:id" component={SingleBlab} />
+                <Route component={NoMatch} />
+              </Switch>
+            </div>
+          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>
