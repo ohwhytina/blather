@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 // import LikeButton from '../LikeButton'
 
 
-import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Divider, unstable_createMuiStrictModeTheme} from '@material-ui/core/';
+import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Divider} from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
 import CommentIcon from '@material-ui/icons/Comment';
-import { useMutation } from '@apollo/react-hooks';
+// import { useMutation } from '@apollo/react-hooks';
 
 
 const BlabList = ({ blabs, title }) => {
