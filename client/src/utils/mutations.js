@@ -67,9 +67,10 @@ export const ADD_FRIEND = gql`
     }
   }
 `;
+
 export const ADD_LIKE = gql`
-  mutation addLike($id: ID!) {
-    addLike(likeId: $id) {
+  mutation addLike($blabId: ID!) {
+    addLike(blabId: $blabId) {
       _id
       username
       likeCount

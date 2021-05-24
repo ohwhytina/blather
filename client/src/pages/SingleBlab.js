@@ -56,7 +56,7 @@ const SingleBlab = props => {
         {blab.blabText}
         </Typography>
       </CardContent>
-      <Divider />
+      {/* <Divider />
       <CardActions>
         
         <IconButton aria-label="add to favorites">
@@ -64,7 +64,7 @@ const SingleBlab = props => {
         </IconButton>
         <Typography># of likes</Typography>
 
-        </CardActions>
+        </CardActions> */}
 
         
     </Card>
