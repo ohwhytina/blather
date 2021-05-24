@@ -72,7 +72,7 @@ export const ADD_LIKE = gql`
   mutation addLike($blabId: ID!) {
     addLike(blabId: $blabId) {
       _id
-      username
+     
       likeCount
       likes {
         _id

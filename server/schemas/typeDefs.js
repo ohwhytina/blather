@@ -26,6 +26,11 @@ const typeDefs = gql `
     createdAt: String
     username: String
   }
+  type Like {
+    id: ID!
+    createdAt: String!
+    username: String!
+  }
 
   type Image {
     _id: ID
@@ -52,7 +57,7 @@ const typeDefs = gql `
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addBlab(blabText: String!): Blab
-    likeBlab(_id: ID): Blab
+    addLike(blabId: ID!): Blab!
     addComment(blabId: ID!, commentBody: String!): Blab
     addFriend(friendId: ID!): User
     likeComment(_id:ID): Comment

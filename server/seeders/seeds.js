@@ -35,7 +35,7 @@ db.once('open', async () => {
     await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
   }
 
-  // create friends
+  // create likes
   for (let i = 0; i < 100; i += 1) {
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
     const { _id: userId } = createdUsers.ops[randomUserIndex];

@@ -20,8 +20,8 @@ const blabSchema = new Schema(
       required: true
     },
     likes: {
-      type: Number, 
-      default: 0
+      username: String,
+      createdAt: String
     },
     comments: [commentSchema]
     },
