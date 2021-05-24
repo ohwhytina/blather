@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-const typeDefs = gql`
+const typeDefs = gql `
   type User {
     _id: ID
     username: String
@@ -57,7 +57,11 @@ const typeDefs = gql`
     addFriend(friendId: ID!): User
     likeComment(_id:ID): Comment
     addImage(url: String!, caption: String!, username: String!): [Image]
+    removeBlab(blabId: ID!): User
+    removeFriend(friendId: ID): User
   }
 `;
 
 module.exports = typeDefs;
+
+// imagesByUser(username: String!): [Image]

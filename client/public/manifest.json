@@ -1,6 +1,7 @@
 {
-  "short_name": "Deep Thoughts",
-  "name": "Deep Thoughts",
+  "short_name": "Blather",
+  "name": "Blather",
+  "description": "An app that allow you to share quick thoughts with others and check out other people's profile.",
   "icons": [
     {
       "src": "favicon.ico",

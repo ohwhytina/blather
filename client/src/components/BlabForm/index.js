@@ -8,8 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { Box, Button, Container, Grid, IconButton, TextField, Typography} from '@material-ui/core/';
-import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
+import { Box, Button, Container, Grid, TextField, Typography} from '@material-ui/core/';
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -129,7 +129,7 @@ const BlabForm = () => {
                       onChange={handleChange}
                   />
                   <Typography>Character Count: {characterCount}/280</Typography>
-                  {error && <span className="ml-2">Something went wrong...</span>}
+                  {error && <span>Something went wrong...</span>}
                 </Grid>
               </Grid>
             </Grid>

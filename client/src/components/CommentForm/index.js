@@ -59,6 +59,7 @@ const CommentForm = ({ blabId }) => {
       // clear form value
       setBody('');
       setCharacterCount(0);
+      setOpen(false);
     } catch (e) {
       console.error(e);
     }

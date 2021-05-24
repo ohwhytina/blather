@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import Auth from '../../utils/auth';
 
-import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Button, Typography, Divider} from '@material-ui/core/';
+
+import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Divider} from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import CommentIcon from '@material-ui/icons/Comment';
 
-const BlabList = ({ blabs, title }) => {
 
+const BlabList = ({ blabs, title }) => {
 
   if (!blabs.length) {
     return <h3>No Blabs Yet</h3>;
@@ -28,7 +28,7 @@ const BlabList = ({ blabs, title }) => {
       {blabs &&
     blabs.map(blab => (
     <Box p={1} key={blab._id}>
-    <Card style={{minWidth: 345, maxWidth: 345, maxheight: 300}}>
+    <Card style={{minWidth: 360, maxWidth: 360, maxheight: 400}}>
       <Link to={`/profile/${blab.username}`} style={{ textDecoration: 'none'}}>
       <CardHeader
         avatar={
@@ -42,8 +42,8 @@ const BlabList = ({ blabs, title }) => {
       </Link>
       <CardMedia
       style={{height: 0, paddingTop: '56.25%'}}
-        image="https://timesofindia.indiatimes.com/photo/67586673.cms"
-        title="Paella dish"
+        image="https://res.cloudinary.com/tinablab/image/upload/v1621565724/Jasper_o9dcn9.jpg"
+        title=""
       />
 
       <CardContent>
@@ -55,12 +55,12 @@ const BlabList = ({ blabs, title }) => {
       </CardContent>
       <Divider/>
       <CardActions>
-    
+        
+
         <IconButton aria-label="click to like">
-          <FavoriteIcon /> 
-        </IconButton>
-        <Typography>#oflikes</Typography>
-       
+        <FavoriteIcon />
+        </IconButton >
+        <Typography>{blab.likeCount}</Typography>
         
         <Link to={`/blab/${blab._id}`}>
          <IconButton aria-label="comment">

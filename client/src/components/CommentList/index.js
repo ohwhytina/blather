@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Divider, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, ButtonBase} from '@material-ui/core/';
+import { Divider, Box, Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Typography} from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 const CommentList = ({ comments }) => {
   return (
@@ -16,8 +17,8 @@ const CommentList = ({ comments }) => {
     >
       {comments &&
           comments.map(comment => (   
-    <Box p={1}>
-    <Card>
+    <Box p={1} >
+    <Card style={{height: '100%'}}>
     <Link to={`/profile/${comment.username}`}>
         <CardHeader
         avatar={

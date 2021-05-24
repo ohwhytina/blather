@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Typography, Box, Button, Card } from '@material-ui/core';
-import { teal } from '@material-ui/core/colors'
+import { Typography, Box, Button } from '@material-ui/core';
 
 
 const FriendList = ({ friendCount, username, friends }) => {
