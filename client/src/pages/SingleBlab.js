@@ -64,13 +64,13 @@ const SingleBlab = props => {
               <Image thisBlabId={blabId} />
             </CardContent>
             <Divider />
-            <CardActions disableSpacing>
+            {/* <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
                 <FavoriteIcon />
               </IconButton>
               <Typography># of likes</Typography>
 
-            </CardActions>
+            </CardActions> */}
           </Card>
 
 
