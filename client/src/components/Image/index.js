@@ -30,13 +30,13 @@ const Image = ({thisBlabId}) => {
           }
     }
   
-    const cloudName = process.env.CLOUD_NAME;
+    // const cloudName = process.env.CLOUD_NAME;
     return (
         <>
             <WidgetLoader />
             <Widget
                 resourceType={'image'}
-                cloudName={cloudName}
+                cloudName='jaderiver54'
                 uploadPreset={'slo45v0x'} // check that an upload preset exists and check mode is signed or unisgned
                 buttonText={'Upload Image'} // default 'Upload Files'
                 style={{
