@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import {ADD_BLAB_TEXT } from '../../utils/actions';
  import Image from '../Image'
+//  import { ADD_BLAB } from '../../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
-import { ADD_BLAB} from '../../utils/mutations';
 import { QUERY_BLABS, QUERY_ME } from '../../utils/queries';
-
+import { useStoreContext } from "../../utils/GlobalState";
+import { UPDATE_BLAB_TEXT, ADD_BLAB} from '../../utils/actions';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { Box, Button, Container, Grid, IconButton, TextField, Typography } from '@material-ui/core/';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
+import { image } from "@cloudinary/base/qualifiers/source";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -27,10 +28,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BlabForm = () => {
+  const [state, dispatch] = useStoreContext();
+  const {blabText, imageUrl} = state;
   const classes = useStyles();
-  const [imageData, setImageData] = useState({imageUrl: ""});
-  const [blabText, setText] = useState('');
-
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -66,14 +66,26 @@ const BlabForm = () => {
       });
     }
   });
- 
+  // const addToBlabs = () => {
+  //   dispatch({
+  //     type: ADD_BLAB,
+  //     blabText: blabText,
+  //     imageUrl: imageUrl
+  //   });
+  // };
+  //, blabs
 
   // update state based on form input changes
   const handleChange = event => {
-    if (event.target.value.length <= 280) {
-      setText(event.target.value);
-      setCharacterCount(event.target.value.length);
+    const currentText = event.target.value;
+    if (currentText.length <= 280) {
+          setCharacterCount(currentText.length);
+          dispatch({
+            type: UPDATE_BLAB_TEXT,
+            blabText: currentText
+          });
     }
+    
   };
 
   // submit form
@@ -83,21 +95,17 @@ const BlabForm = () => {
       try {
 
         await addBlab({
-          variables: { blabText }
+          variables: { blabText, imageUrl }
         });
 
         // clear form value
-        setText('');
+        // setText('');
         setCharacterCount(0);
         handleClose();
       } catch (e) {
         console.error(e);
       }
    };
-  //  const [state, dispatch] = useStoreContext();
-
-  //  const { blabText, imageUrl } = state;
-   
 
   return (
     <div>

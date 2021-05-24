@@ -1,7 +1,8 @@
 import { useReducer } from 'react';
 import {
     UPDATE_BLAB_TEXT,
-    UPDATE_BLAB_IMAGE
+    UPDATE_BLAB_IMAGE,
+    ADD_BLAB
 } from "./actions";
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -15,6 +16,11 @@ export const reducer = (state, action) => {
                 ...state,
                 imageUrl: action.imageUrl
             }
+        case ADD_BLAB:
+            return {
+                ...state,
+                blabs: [...state.blabs, ...action.blab]
+            }
         default:
             return state;
     }
@@ -26,3 +32,5 @@ export function useProductReducer(initialState) {
 }
 // BlabList
 // BlabForm
+
+// UPDATE_LIKES

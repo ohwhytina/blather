@@ -5,9 +5,7 @@ const dateFormat = require('../utils/dateFormat');
 const blabSchema = new Schema({
     blabText: {
         type: String,
-        required: 'You need to leave a blab!',
-        minlength: 1,
-        maxlength: 280
+        default: "... you didn't blab..."
     },
     imageUrl: {
         type: String,

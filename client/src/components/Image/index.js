@@ -1,15 +1,24 @@
 import axios from 'axios';
 import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import { useStoreContext } from "../../utils/GlobalState";
+import { UPDATE_BLAB_IMAGE } from '../../utils/actions';
 
 const Image = props => {
+    const [state, dispatch] = useStoreContext();
+    const { imageUrl } = state;
 
-    const [imageState, setImageState] = useState("");
-    const handleSuccess=(result) => { 
-        setImageState(result.info.url)
-        console.log("URL: "+ result.info.url) ;
+    const handleSuccess = (result) => {
+        const newUrl = JSON.stringify(result.info.url);
+        console.log("URL: " + newUrl);
+        if (newUrl) {
+            dispatch({
+                type: UPDATE_BLAB_IMAGE,
+                imageUrl: newUrl
+            })
         }
-      
+    }
+  
     const cloudName = "jaderiver54";
     return (
         <>

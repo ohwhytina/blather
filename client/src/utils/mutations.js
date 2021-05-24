@@ -64,19 +64,19 @@ mutation addFriend($id: ID!) {
     }
 }
 `;
-export const ADD_LIKE = gql `
-mutation addLike($id: ID!) {
-    addLike(likeId: $id) {
-        _id
-        username
-        likeCount
-        likes {
-            _id
-            username
-        }
-    }
-}
-`;
+// export const ADD_LIKE = gql `
+// mutation addLike($id: ID!) {
+//     addLike(likeId: $id) {
+//         _id
+//         username
+//         likeCount
+//         likes {
+//             _id
+//             username
+//         }
+//     }
+// }
+// `;
 
 export const REMOVE_FRIEND = gql `
 mutation removeFriend($id: ID!) {

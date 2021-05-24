@@ -90,28 +90,26 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
 
-        likeBlab: async(parent, { _id }, context) => {
-            if (context.user) {
-                const retrieveBlab = await Blab.find(_id);
-                let currentLikes = retrieveBlab.likes;
-                currentLikes++;
-                return blab.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
+        //     likeBlab: async(parent, { _id, currentLikes }, context) => {
+        //         if (context.user) {
+        //             const retrieveBlab = await Blab.find(_id);
+        //             return blab.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
 
-            }
-            throw new AuthenticationError('You need to be logged in!');
+        //         }
+        //         throw new AuthenticationError('You need to be logged in!');
 
-        },
-        likeComment: async(parent, { _id }, context) => {
-            if (context.user) {
-                const retrieveComment = await comment.find(_id);
-                let currentLikes = retrieveComment.likes;
-                currentLikes++;
-                return Comment.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
+        //     },
+        //     likeComment: async(parent, { _id }, context) => {
+        //         if (context.user) {
+        //             const retrieveComment = await comment.find(_id);
+        //             let currentLikes = retrieveComment.likes;
+        //             currentLikes++;
+        //             return Comment.findByIdAndUpdate(_id, { $inc: { quantity: currentLikes } }, { new: true });
 
-            }
-            throw new AuthenticationError('You need to be logged in!');
+        //         }
+        //         throw new AuthenticationError('You need to be logged in!');
 
-        }
+        //     }
     }
 };
 

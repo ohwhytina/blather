@@ -47,11 +47,12 @@ const typeDefs = gql `
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addBlab(blabText: String!, imageUrl: String): Blab
-    likeBlab(_id: ID): Blab
     addComment(blabId: ID!, commentBody: String!): Blab
     addFriend(friendId: ID!): User
-    likeComment(_id:ID): Comment
   }
 `;
 
 module.exports = typeDefs;
+
+//    likeBlab(_id: ID): Blab
+//    likeComment(_id:ID): Comment
