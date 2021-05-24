@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import LikeButton from '../LikeButton'
+// import LikeButton from '../LikeButton'
 
 
 import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, Divider, unstable_createMuiStrictModeTheme} from '@material-ui/core/';
@@ -59,7 +59,7 @@ const BlabList = ({ blabs, title }) => {
       </CardContent>
       <Divider/>
       <CardActions>
-        <LikeButton></LikeButton>
+        {/* <LikeButton></LikeButton> */}
 {/* 
         <IconButton aria-label="click to like">
         <FavoriteIcon />
