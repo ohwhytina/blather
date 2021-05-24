@@ -19,6 +19,7 @@ git clone or download files, add a .env file with your Cloudinary Cloud Name and
 
 ![Demo](https://github.com/ohwhytina/blather/blob/main/client/img/Blather.gif?raw=true)
 
+![QRCODE](https://github.com/ohwhytina/blather/blob/main/client/img/QRCODE.png?raw=true)
 
 ## Usage
 Material UI, Apollo, Graphql, JWT-decode, React, Express, Mongoose, Mongodb, Cloudinary
