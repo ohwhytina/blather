@@ -91,9 +91,13 @@ mutation addFriend($id: ID!) {
 // }
 // `;
 
-export const REMOVE_FRIEND = gql `
-mutation removeFriend($id: ID!) {
-    removeFriend(id: $id) {
+
+export const REMOVE_FRIEND = gql`
+  mutation removeFriend($friendId: ID!) {
+    removeFriend(friendId: $friendId) {
+      _id
+      username
+        friends {
         _id
         username
         friends {
@@ -101,5 +105,21 @@ mutation removeFriend($id: ID!) {
             username
         }
     }
-}
+  }
 `;
+
+export const REMOVE_BLAB = gql`
+  mutation removeBlab($blabId: ID!) {
+    removeBlab(blabId: $blabId) {
+      _id
+      blabText
+      createdAt
+      username
+      commentCount
+      comments {
+        _id
+      }
+    }
+  }
+`;
+

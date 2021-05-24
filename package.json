@@ -11,6 +11,10 @@
     "seed": "cd server && npm run seed",
     "heroku-postbuild": "cd client && npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@work.github.com:ohwhytina/blather.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -23,9 +27,14 @@
     "from": "^0.1.7",
     "graphql": "^15.5.0",
     "if-env": "^1.0.4",
+
     "import": "0.0.6"
+
+    "jwt-decode": "^3.1.2"
+
   },
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^6.1.0",
+    "webpack-pwa-manifest": "^4.3.0"
   }
 }

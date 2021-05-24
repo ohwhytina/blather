@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { Box, Button, Container, Grid, TextField} from '@material-ui/core/';
+import { Box, Button, Container, Grid, TextField, Typography} from '@material-ui/core/';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -59,6 +59,7 @@ const CommentForm = ({ blabId }) => {
       // clear form value
       setBody('');
       setCharacterCount(0);
+      setOpen(false);
     } catch (e) {
       console.error(e);
     }
@@ -104,7 +105,7 @@ const CommentForm = ({ blabId }) => {
                        value={commentBody}
                       onChange={handleChange}
                   />
-                  Character Count: {characterCount}/280
+                  <Typography>Character Count: {characterCount}/280</Typography>
                   {error && <span className="ml-2">Something went wrong...</span>}
                 </Grid>
               </Grid>

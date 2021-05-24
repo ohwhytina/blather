@@ -27,6 +27,11 @@ const typeDefs = gql `
     createdAt: String
     username: String
   }
+  type Like {
+    id: ID!
+    createdAt: String!
+    username: String!
+  }
 
 
 
@@ -46,10 +51,20 @@ const typeDefs = gql `
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addBlab(blabText: String!, imageUrl: String): Blab
+
+    
     addComment(blabId: ID!, commentBody: String!): Blab
     addFriend(friendId: ID!): User
     addImage(blabId: ID!, imageUrl: String!): Blab
+    addBlab(blabText: String!): Blab
+    addLike(blabId: ID!): Blab!
+    addComment(blabId: ID!, commentBody: String!): Blab
+    addFriend(friendId: ID!): User
+    likeComment(_id:ID): Comment
+    
+    removeBlab(blabId: ID!): User
+    removeFriend(friendId: ID): User
+
   }
 `;
 

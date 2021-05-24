@@ -1,12 +1,9 @@
 import React from 'react';
 import BlabList from '../components/BlabList';
-import FriendList from '../components/FriendList';
 
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_BLABS, QUERY_ME_BASIC } from '../utils/queries';
-
-import { Divider } from '@material-ui/core/';
 
 
 const Home = () => {

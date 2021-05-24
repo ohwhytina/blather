@@ -6,13 +6,17 @@ import { useStoreContext } from "../utils/GlobalState";
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
+
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_BLAB } from '../utils/queries';
 
-import { Divider, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, ButtonBase } from '@material-ui/core/';
+
+import { Divider, Box, Card, CardHeader, CardMedia, CardContent, Avatar, Typography } from '@material-ui/core/';
+
 import FaceIcon from '@material-ui/icons/Face';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 
 const SingleBlab = props => {
@@ -32,6 +36,7 @@ const SingleBlab = props => {
   }
 
   return (
+
     <div style={{ width: '100%' }}>
       <Box
         display="flex"
@@ -80,6 +85,7 @@ const SingleBlab = props => {
       {Auth.loggedIn() && <CommentForm blabId={blab._id} />}
       <Divider variant="middle" />
       {blab.commentCount > 0 && <CommentList comments={blab.comments} />}
+
 
     </div>
   );

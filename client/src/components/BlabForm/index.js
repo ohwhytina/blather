@@ -1,6 +1,11 @@
+
 import React, { useState, useEffect } from "react";
  import { ADD_BLAB } from '../../utils/mutations';
 import { useMutation, useQuery } from '@apollo/react-hooks';
+
+import React, { useState } from 'react';
+
+
 import { QUERY_BLABS, QUERY_ME } from '../../utils/queries';
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_BLABS, UPDATE_BLAB_TEXT } from '../../utils/actions';
@@ -8,9 +13,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+
 import { Box, Button, Container, Grid, IconButton, TextField, Typography } from '@material-ui/core/';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 import { image } from "@cloudinary/base/qualifiers/source";
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -128,6 +135,7 @@ const BlabForm = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
+
             <div><Container maxWidth="sm">
               <form onSubmit={handleFormSubmit}>
                 <Grid container spacing={3}>
@@ -156,6 +164,7 @@ const BlabForm = () => {
                   <Box display="flex" m={1} p={1} bgcolor="background.paper">
                     <Button color="secondary" type="submit" variant="contained">
                       Blab away!
+
         </Button>
                   </Box>
                 </Grid>

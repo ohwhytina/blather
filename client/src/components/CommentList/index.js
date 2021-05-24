@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Divider, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography, ButtonBase} from '@material-ui/core/';
+import { Divider, Box, Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Typography} from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { sizing } from '@material-ui/system';
+
 
 const CommentList = ({ comments }) => {
   return (
@@ -19,7 +19,7 @@ const CommentList = ({ comments }) => {
           comments.map(comment => (   
     <Box p={1} >
     <Card style={{height: '100%'}}>
-    <Link to={`/profile/${comment.username}`}>
+    <Link to={`/profile/${comment.username}`} style={{ textDecoration: 'none'}}>
         <CardHeader
         avatar={
           <Avatar aria-label="recipe" style={{backgroundColor: '#2196f3'}}>
@@ -36,12 +36,13 @@ const CommentList = ({ comments }) => {
         </Typography>
         </CardContent>
         <Divider/>
-        <CardActions>
+
+        {/* <CardActions>
         <IconButton aria-label="click to like">
           <FavoriteIcon /> 
         </IconButton>
         <Typography># of likes</Typography>
-        </CardActions>
+        </CardActions> */}
 
         </Card>
     </Box>

@@ -1,14 +1,19 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import Auth from '../../utils/auth';
+// import LikeButton from '../LikeButton'
+
 
 import { Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Button, Typography, Divider } from '@material-ui/core/';
+
 import FaceIcon from '@material-ui/icons/Face';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
 import CommentIcon from '@material-ui/icons/Comment';
+// import { useMutation } from '@apollo/react-hooks';
+
 
 const BlabList = ({ blabs, title }) => {
+
 
 
   if (!blabs.length) {
@@ -24,6 +29,7 @@ const BlabList = ({ blabs, title }) => {
         display="flex"
         flexWrap="wrap"
         justifyContent="flex-start"
+
       >
         {blabs &&
           blabs.map(blab => (
@@ -76,6 +82,7 @@ const BlabList = ({ blabs, title }) => {
       </Box>
 
     </div>
+
   )
 };
 
