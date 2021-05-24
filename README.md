@@ -10,7 +10,7 @@
 * [Questions](#Questions)
 
 ## Description 
-An application that lets you share quick thoughts with others while following other and seeing their thoughts. 
+An social application for posting blabs, commenting and posting images with your friends.
 
 ## Installation
 git clone or download files, add a .env file with your Cloudinary Cloud Name and set it to the (process.env) variable "CLOUD_NAME",  npm i, npm run start - to seed using faker data run: npm run seed
