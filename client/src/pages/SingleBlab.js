@@ -11,12 +11,9 @@ import Auth from '../utils/auth';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_BLAB } from '../utils/queries';
 
-
-import { Divider, Box, Card, CardHeader, CardMedia, CardContent, Avatar, Typography } from '@material-ui/core/';
-
+import { Divider, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography } from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
 const SingleBlab = props => {

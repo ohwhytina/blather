@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
  import { ADD_BLAB } from '../../utils/mutations';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 
-import React, { useState } from 'react';
 
 
 import { QUERY_BLABS, QUERY_ME } from '../../utils/queries';
