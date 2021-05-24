@@ -82,13 +82,28 @@ export const ADD_LIKE = gql`
 `;
 
 export const REMOVE_FRIEND = gql`
-  mutation removeFriend($id: ID!) {
-    removeFriend(id: $id) {
+  mutation removeFriend($friendId: ID!) {
+    removeFriend(friendId: $friendId) {
       _id
       username
-      friends {
+        friends {
         _id
         username
+      }
+    }
+  }
+`;
+
+export const REMOVE_BLAB = gql`
+  mutation removeBlab($blabId: ID!) {
+    removeBlab(blabId: $blabId) {
+      _id
+      blabText
+      createdAt
+      username
+      commentCount
+      comments {
+        _id
       }
     }
   }

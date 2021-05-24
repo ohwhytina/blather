@@ -2,21 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
 
-import { makeStyles, AppBar, Toolbar, Button, Typography, Box, Backdrop, Fade, IconButton, Checkbox, InputBase, FormControlLabel } from '@material-ui/core/';
-
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(3, 5, 4),
-  },
-}));
+import { AppBar, Toolbar, Button, Typography, Box } from '@material-ui/core/';
 
 
 const Header = () => {

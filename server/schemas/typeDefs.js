@@ -57,6 +57,8 @@ const typeDefs = gql `
     addFriend(friendId: ID!): User
     likeComment(_id:ID): Comment
     addImage(url: String!, caption: String!, username: String!): [Image]
+    removeBlab(blabId: ID!): User
+    removeFriend(friendId: ID): User
   }
 `;
 

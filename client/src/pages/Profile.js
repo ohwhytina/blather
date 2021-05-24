@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
 import BlabForm from '../components/BlabForm';
 import BlabList from '../components/BlabList';
 import FriendList from '../components/FriendList';
@@ -17,6 +17,7 @@ const Profile = props => {
   const { username: userParam } = useParams();
 
   const [addFriend] = useMutation(ADD_FRIEND);
+ 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam }
   });
@@ -51,6 +52,7 @@ const Profile = props => {
     }
   };
 
+
   return (
     <div>
       <Box pt={1}>
@@ -66,15 +68,16 @@ const Profile = props => {
           </Button>
         )}
         </Box>
+
       </Box>
       <Divider/>
 
-      <div className="flex-row justify-space-between mb-3">
+      <div>
         <Typography>
           <BlabList blabs={user.blabs} title={`${user.username}'s Blabs`} />
         </Typography>
         <Divider/>
-        <div className="col-12 col-lg-3 mb-3">
+        <div>
           <FriendList
             username={user.username}
             friendCount={user.friendCount}
