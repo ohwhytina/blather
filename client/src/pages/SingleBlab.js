@@ -28,6 +28,8 @@ const SingleBlab = props => {
 
   const blab = data?.blab || {};
 
+  
+
   if (loading) {
     return <div>Loading...</div>;
   }
