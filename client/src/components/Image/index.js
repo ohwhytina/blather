@@ -13,13 +13,13 @@ import { Button } from '@material-ui/core/';
 
 
 const Image = ({ thisBlabId, blabUsername }) => {
-    let blabUser;
+    let currentUser;
     const { data } = useQuery(QUERY_ME);
-    let user;
+
 
     if (data) {
-        user = data.me;
-        console.log(user.username);
+        currentUser = data.me.username;
+        console.log(currentUser);
 
     }
     console.log(thisBlabId);
@@ -50,7 +50,7 @@ const Image = ({ thisBlabId, blabUsername }) => {
 
     // const cloudName = "jaderiver54";
     //process.env.CLOUD_NAME;
-    if (true) {
+    if (currentUser == blabUsername) {
         return (
             <div>
                 {true ? (
@@ -88,7 +88,7 @@ const Image = ({ thisBlabId, blabUsername }) => {
         );
     } else {
         return (<div>
-            <Link to="/" style={{ textDecoration: 'none' }}><Button color="black">Home</Button></Link>
+            <Link to="/" style={{ textDecoration: 'none' }}><Button style={{ color: 'black' }}>Home</Button></Link>
 
         </div>)
     }
