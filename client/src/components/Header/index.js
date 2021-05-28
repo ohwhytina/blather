@@ -24,15 +24,15 @@ const Header = () => {
         <Box style={{ marginLeft: 'auto'}}>
           {Auth.loggedIn() ? (
             <>
-              <Link to="/profile" style={{ textDecoration: 'none'}}><Button color="black">Profile</Button></Link>
-              <a href="/" onClick={logout} style={{ textDecoration: 'none' }}><Button color="white">
+              <Link to="/profile" style={{ textDecoration: 'none'}}><Button style={{ color: 'black' }}>Profile</Button></Link>
+              <a href="/" onClick={logout} style={{ textDecoration: 'none' }}><Button style={{ color: 'white' }}>
                 Logout
                 </Button></a>
             </>
           ) : (
             <>
-              <Link to="/login" style={{ textDecoration: 'none' }}><Button color="black">Login</Button></Link>
-              <Link to="/signup" style={{ textDecoration: 'none'  }}><Button color="black">Signup</Button></Link>
+              <Link to="/login" style={{ textDecoration: 'none' }}><Button style={{ color: 'black' }}>Login</Button></Link>
+              <Link to="/signup" style={{ textDecoration: 'none'  }}><Button style={{ color: 'black' }}>Signup</Button></Link>
             </>
           )}
       </Box>

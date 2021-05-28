@@ -7,14 +7,14 @@ import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
 
-import Auth from '../utils/auth';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_BLAB } from '../utils/queries';
 
-import { Divider, Box, Card, CardHeader, CardMedia, CardContent, CardActions, Avatar, IconButton, Typography } from '@material-ui/core/';
+import { Divider, Box, Card, CardHeader, CardMedia, CardContent,  Avatar,  Typography } from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+import Auth from '../utils/auth';
+// CardActions, IconButton
 
 const SingleBlab = props => {
 
@@ -23,7 +23,7 @@ const SingleBlab = props => {
   const { id: blabId } = useParams();
 
   const { loading, data } = useQuery(QUERY_BLAB, {
-    variables: { id: blabId }
+    variables: { id: blabId}
   });
 
   const blab = data?.blab || {};
@@ -61,7 +61,9 @@ const SingleBlab = props => {
                 {blab.blabText}
                 
               </Typography>
-              <Image thisBlabId={blabId} />
+ 
+              <Image thisBlabId={blabId} blabUsername={blab.username} />
+
             </CardContent>
             <Divider />
             {/* <CardActions disableSpacing>
