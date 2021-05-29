@@ -53,12 +53,10 @@ const Image = ({ thisBlabId, blabUsername }) => {
             <div>
                 {true ? (
                     <>
-
-
-                        <WidgetLoader />
+                      <WidgetLoader />
                         <Widget
                             resourceType={'image'}
-                            cloudName='insertyourcloudnamehere'    //process.env.CLOUD_NAME;
+                            cloudName='insertyourcloudnamehere' //process.env.CLOUD_NAME;
                             uploadPreset={'unsignedpreset'} // your upload preset here - check that an upload preset exists and check mode is signed or unisgned
                             buttonText={'Upload Image'} // default 'Upload Files'
                             style={{
@@ -86,7 +84,7 @@ const Image = ({ thisBlabId, blabUsername }) => {
         );
     } else {
         return (<div>
-            <Link to="/" style={{ textDecoration: 'none' }}><Button style={{ color: 'black' }}>Home</Button></Link>
+            <Link to="/" style={{ textDecoration: 'none' }}><Button style={{ color: 'black' }}>← Home</Button></Link>
 
         </div>)
     }

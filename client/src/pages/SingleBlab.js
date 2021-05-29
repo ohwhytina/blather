@@ -43,7 +43,7 @@ const SingleBlab = props => {
         flexWrap="wrap"
         justifyContent="center"
       >
-        <Box p={2}>
+        <Box p={2} key={blab.username}>
           <Card style={{ width: 300, maxheight: 300 }}>
             <Link to={`/profile/${blab.username}`} style={{ textDecoration: 'none' }}>
               <CardHeader

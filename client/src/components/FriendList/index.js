@@ -4,10 +4,10 @@ import { Typography, Box, Button } from '@material-ui/core';
 
 
 const FriendList = ({ friendCount, username, friends }) => {
-  
+  //
   if (!friends || !friends.length) {
     return (
-    <Box p={2}>
+    <Box >
     <Typography>{username} is not following anyone.</Typography>
     </Box>
     )}
@@ -20,7 +20,7 @@ const FriendList = ({ friendCount, username, friends }) => {
     <Box p={1}>
       {friends.map(friend => (
         <Link to={`/profile/${friend.username}`} style={{ textDecoration: 'none'}}>
-          <Button variant="contained" style={{ backgroundColor: '#b2dfdb' }} key={friend._id}>
+          <Button key={friend._id} variant="contained" style={{ backgroundColor: '#b2dfdb' }} key={friend._id}>
           {friend.username}
         </Button></Link>
       ))}
