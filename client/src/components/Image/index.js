@@ -48,8 +48,6 @@ const Image = ({ thisBlabId, blabUsername }) => {
         }
     }
 
-    // const cloudName = "jaderiver54";
-    //process.env.CLOUD_NAME;
     if (currentUser == blabUsername) {
         return (
             <div>
@@ -60,8 +58,8 @@ const Image = ({ thisBlabId, blabUsername }) => {
                         <WidgetLoader />
                         <Widget
                             resourceType={'image'}
-                            cloudName='jaderiver54'
-                            uploadPreset={'slo45v0x'} // check that an upload preset exists and check mode is signed or unisgned
+                            cloudName='insertyourcloudnamehere'    //process.env.CLOUD_NAME;
+                            uploadPreset={'unsignedpreset'} // your upload preset here - check that an upload preset exists and check mode is signed or unisgned
                             buttonText={'Upload Image'} // default 'Upload Files'
                             style={{
                                 color: 'white',
