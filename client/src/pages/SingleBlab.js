@@ -9,8 +9,9 @@ import CommentForm from '../components/CommentForm';
 
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_BLAB } from '../utils/queries';
+import { Link } from 'react-router-dom';
 
-import { Divider, Box, Card, CardHeader, CardMedia, CardContent,  Avatar,  Typography } from '@material-ui/core/';
+import { Divider, Box, Card, CardHeader, CardMedia, CardContent, Avatar, Typography } from '@material-ui/core/';
 import FaceIcon from '@material-ui/icons/Face';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 import Auth from '../utils/auth';
@@ -23,12 +24,12 @@ const SingleBlab = props => {
   const { id: blabId } = useParams();
 
   const { loading, data } = useQuery(QUERY_BLAB, {
-    variables: { id: blabId}
+    variables: { id: blabId }
   });
 
   const blab = data?.blab || {};
 
-  
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -44,15 +45,17 @@ const SingleBlab = props => {
       >
         <Box p={2}>
           <Card style={{ width: 300, maxheight: 300 }}>
-            <CardHeader
-              avatar={
-                <Avatar aria-label="recipe" style={{ backgroundColor: '#2196f3' }}>
-                  <FaceIcon />
-                </Avatar>
-              }
-              title={blab.username}
-              subheader={blab.createdAt}
-            />
+            <Link to={`/profile/${blab.username}`} style={{ textDecoration: 'none' }}>
+              <CardHeader
+                avatar={
+                  <Avatar aria-label="recipe" style={{ backgroundColor: '#2196f3' }}>
+                    <FaceIcon />
+                  </Avatar>
+                }
+                title={blab.username}
+                subheader={blab.createdAt}
+              />
+            </Link>
             <CardMedia
               style={{ height: 0, paddingTop: '56.25%' }}
               image={blab.imageUrl}
@@ -61,9 +64,9 @@ const SingleBlab = props => {
             <CardContent>
               <Typography variant="body2" component="p">
                 {blab.blabText}
-                
+
               </Typography>
- 
+
               <Image thisBlabId={blabId} blabUsername={blab.username} />
 
             </CardContent>

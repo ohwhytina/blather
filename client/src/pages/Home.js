@@ -1,17 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import BlabList from '../components/BlabList';
-
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_BLABS, QUERY_ME_BASIC } from '../utils/queries';
+import { QUERY_BLABS, QUERY_ME_BASIC, QUERY_USERS } from '../utils/queries';
+import { useStoreContext } from '../utils/GlobalState';
+import { UPDATE_BLABS, UPDATE_USERS } from '../utils/actions';
 
 
 const Home = () => {
+  const [state, dispatch] = useStoreContext();
   const { loading, data } = useQuery(QUERY_BLABS);
-  const { data: userData } = useQuery(QUERY_ME_BASIC);
-  const blabs = data?.blabs || [];
+  const { data: thisUserData } = useQuery(QUERY_ME_BASIC);
+  const { data: usersData } = useQuery(QUERY_USERS);
 
+  const allBlabs = data?.blabs || [];
+  const { blabs, users } = state;
+  let thisUser;
+  let greeting = "!";
   const loggedIn = Auth.loggedIn();
+  if (thisUserData && loggedIn) {
+    thisUser = thisUserData.me.username;
+    console.log(thisUser);
+    greeting = ", " + thisUser + "!";
+  }
+  greeting = "Welecome to the Blabs" + greeting;
+  useEffect(() => {
+    if (data) {
+      dispatch({
+        type: UPDATE_BLABS,
+        blabs: data.blabs
+      });
+    }
+  }, [usersData, dispatch]);
+  useEffect(() => {
+    if (usersData) {
+      dispatch({
+        type: UPDATE_USERS,
+        users: usersData.users
+      });
+    }
+  }, [usersData, dispatch]);
+
+
 
   return (
     <main>
@@ -21,7 +51,7 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <BlabList blabs={blabs} title="Welcome to the Blabs!" />
+            <BlabList blabs={allBlabs} title={greeting} />
           )}
         </div>
       </div>
