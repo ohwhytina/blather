@@ -4,7 +4,7 @@ import Auth from '../utils/auth';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_BLABS, QUERY_ME_BASIC, QUERY_USERS } from '../utils/queries';
 import { useStoreContext } from '../utils/GlobalState';
-import { UPDATE_BLABS, UPDATE_USERS } from '../utils/actions';
+import { UPDATE_BLABS, UPDATE_USERS, UPDATE_CURRENT_USER } from '../utils/actions';
 
 
 const Home = () => {
@@ -19,10 +19,19 @@ const Home = () => {
   let greeting = "!";
   const loggedIn = Auth.loggedIn();
   if (thisUserData && loggedIn) {
-    thisUser = thisUserData.me.username;
+    thisUser = thisUserData.me;
     console.log(thisUser);
-    greeting = ", " + thisUser + "!";
+    greeting = ", " + thisUser.username + "!";
   }
+  useEffect(() => {
+    if (thisUserData) {
+      dispatch({
+        type: UPDATE_CURRENT_USER,
+        currentUser: thisUserData.me
+      });
+    }
+   
+  }, [thisUserData, dispatch]);
   greeting = "Welecome to the Blabs" + greeting;
   useEffect(() => {
     if (data) {
@@ -31,7 +40,9 @@ const Home = () => {
         blabs: data.blabs
       });
     }
-  }, [usersData, dispatch]);
+   
+  }, [data, dispatch]);
+
   useEffect(() => {
     if (usersData) {
       dispatch({
@@ -40,6 +51,8 @@ const Home = () => {
       });
     }
   }, [usersData, dispatch]);
+
+  
 
 
 

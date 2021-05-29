@@ -3,7 +3,7 @@ import {
     UPDATE_BLAB_IMAGE,
     UPDATE_BLABS,
     UPDATE_USERS,
-    CURRENT_USER
+    UPDATE_CURRENT_USER
 } from "./actions";
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -22,10 +22,10 @@ export const reducer = (state, action) => {
                 ...state,
                 imageUrl: action.imageUrl
             }
-        case CURRENT_USER:
+        case UPDATE_CURRENT_USER:
             return {
                 ...state,
-                currentUser:
+                currentUser: action.currentUser
             }
 
             // case ADD_BLAB:
