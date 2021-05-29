@@ -34,7 +34,7 @@ const resolvers = {
         },
         blab: async(parent, { _id }) => {
             return Blab.findOne({ _id });
-        },
+        }
 
     },
     Mutation: {
