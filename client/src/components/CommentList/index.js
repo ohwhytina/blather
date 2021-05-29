@@ -17,7 +17,7 @@ const CommentList = ({ comments }) => {
     >
       {comments &&
           comments.map(comment => (   
-    <Box p={1} >
+    <Box p={1} key={comment._id}>
     <Card style={{height: '100%'}}>
     <Link to={`/profile/${comment.username}`} style={{ textDecoration: 'none'}}>
         <CardHeader
