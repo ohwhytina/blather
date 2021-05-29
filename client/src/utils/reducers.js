@@ -1,6 +1,5 @@
 import { useReducer } from 'react';
 import {
-    UPDATE_BLAB_IMAGE,
     UPDATE_BLABS,
     UPDATE_USERS,
     UPDATE_CURRENT_USER
@@ -16,11 +15,6 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 users: [...action.users]
-            }
-        case UPDATE_BLAB_IMAGE:
-            return {
-                ...state,
-                imageUrl: action.imageUrl
             }
         case UPDATE_CURRENT_USER:
             return {
