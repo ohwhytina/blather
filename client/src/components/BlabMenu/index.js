@@ -5,13 +5,13 @@ import { useQuery } from '@apollo/react-hooks';
 import { QUERY_BLABS, QUERY_ME_BASIC, QUERY_USERS } from '../../utils/queries';
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_BLABS, UPDATE_USERS, UPDATE_CURRENT_USER } from '../../utils/actions';
-
+import { idbPromise } from "../../utils/helpers";
 
 const BlabMenu = () => {
   const [state, dispatch] = useStoreContext();
   const { loading, data } = useQuery(QUERY_BLABS);
   const { data: thisUserData } = useQuery(QUERY_ME_BASIC);
-  const { data: usersData } = useQuery(QUERY_USERS);
+  const { loading, git data: usersData } = useQuery(QUERY_USERS);
 
   const allBlabs = data?.blabs || [];
   // const { blabs, users } = state;
@@ -39,9 +39,19 @@ const BlabMenu = () => {
         type: UPDATE_BLABS,
         blabs: data.blabs
       });
-    }
+      data.blabs.forEach((blab) => {
+        idbPromise('blabs', 'put', blab);
+      });
+    }else if (!loading) {
+        idbPromise('blabs', 'get').then((blabs) => {
+          dispatch({
+            type: UPDATE_BLABS,
+            blabs: blabs
+          });
+        });
+      }
    
-  }, [data, dispatch]);
+  }, [data, loading, dispatch]);
 
   useEffect(() => {
     if (usersData) {
@@ -49,8 +59,18 @@ const BlabMenu = () => {
         type: UPDATE_USERS,
         users: usersData.users
       });
-    }
-  }, [usersData, dispatch]);
+      usersData.users.forEach((user) => {
+        idbPromise('users', 'put', user);
+      });
+    } else if (!loading) {
+    idbPromise('users', 'get').then((users) => {
+      dispatch({
+        type: UPDATE_USERS,
+        users: users
+      });
+    });
+  }
+  }, [usersData, loading, dispatch]);
 
   
 
