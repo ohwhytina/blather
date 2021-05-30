@@ -11,7 +11,7 @@ const BlabMenu = () => {
   const [state, dispatch] = useStoreContext();
   const { loading, data } = useQuery(QUERY_BLABS);
   const { data: thisUserData } = useQuery(QUERY_ME_BASIC);
-  const { loading, git data: usersData } = useQuery(QUERY_USERS);
+  const { loading, data: usersData } = useQuery(QUERY_USERS);
 
   const allBlabs = data?.blabs || [];
   // const { blabs, users } = state;
