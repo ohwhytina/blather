@@ -149,24 +149,23 @@ const resolvers = {
         //             }
         //             throw new AuthenticationError('You need to be logged in!');
         //         },
-        removeFriend: async(parent, { friendId }, context) => {
-            if (context.user) {
+        //     removeFriend: async(parent, { friendId }, context) => {
+        //         if (context.user) {
 
-                const updatedUser = await User.findByIdAndUpdate({ _id: context.user._id }, { $pull: { friends: { friendId: friendId.input } } }, { new: true });
+        //             const updatedUser = await User.findByIdAndUpdate({ _id: context.user._id }, { $pull: { friends: { friendId: friendId.input } } }, { new: true });
 
-                return updatedUser;
-            }
-            throw new AuthenticationError('You need to be logged in!');
-        },
-        removeBlab: async(parent, args, context) => {
-            if (context.user) {
+        //             return updatedUser;
+        //         }
+        //         throw new AuthenticationError('You need to be logged in!');
+        //     },
+        //     removeBlab: async(parent, args, context) => {
+        //         if (context.user) {
 
-                const updatedUser = await User.findByIdAndRemove({ _id: context.user._id }, { $pull: { blabs: { blabs: blab._id } } }, { new: true });
-
-                return updatedUser;
-            }
-            throw new AuthenticationError('You need to be logged in!');
-        }
+        //             const updatedUser = await User.findByIdAndRemove({ _id: context.user._id }, { $pull: { blabs: { blabs: blab._id } } }, { new: true });
+        //             return updatedUser;
+        //         }
+        //         throw new AuthenticationError('You need to be logged in!');
+        //     }
 
 
     }
