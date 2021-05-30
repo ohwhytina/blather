@@ -55,16 +55,15 @@ const typeDefs = gql `
     addFriend(friendId: ID!): User
     addImage(blabId: ID!, imageUrl: String!): Blab
     addBlab(blabText: String!): Blab
-    addLike(blabId: ID!): Blab!
     addComment(blabId: ID!, commentBody: String!): Blab
-    likeComment(_id:ID): Comment
-    removeBlab(blabId: ID!): User
-    removeFriend(friendId: ID): User
-
   }
 `;
 
 module.exports = typeDefs;
 
 //    likeBlab(_id: ID): Blab
-//    likeComment(_id:ID): Comment
+//    likeComment(_id:ID): Comment 
+// removeBlab(blabId: ID!): User
+// removeFriend(friendId: ID): User
+// addLike(blabId: ID!): Blab!
+// likeComment(_id: ID): Comment

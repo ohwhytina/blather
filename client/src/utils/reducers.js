@@ -1,9 +1,10 @@
 import { useReducer } from 'react';
 import {
-    UPDATE_BLAB_IMAGE,
     UPDATE_BLABS,
     UPDATE_USERS,
-    UPDATE_CURRENT_USER
+    UPDATE_CURRENT_USER,
+    ADD_BLAB
+
 } from "./actions";
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -17,11 +18,6 @@ export const reducer = (state, action) => {
                 ...state,
                 users: [...action.users]
             }
-        case UPDATE_BLAB_IMAGE:
-            return {
-                ...state,
-                imageUrl: action.imageUrl
-            }
         case UPDATE_CURRENT_USER:
             return {
                 ...state,
@@ -31,9 +27,9 @@ export const reducer = (state, action) => {
             // case ADD_BLAB:
             //     return {
             //         ...state,
-            //         blabText: action.blabText,
-            //         imageUrl: action.imageUrl
+            //         blabs: [...state.blabs, action.blab]
             //     }
+
         default:
             return state;
     }
