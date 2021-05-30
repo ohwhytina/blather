@@ -6,6 +6,7 @@ export function idbPromise(storeName, method, object) {
             const db = request.result;
             db.createObjectStore('blabs', { keyPath: '_id' });
             db.createObjectStore('users', { keyPath: '_id' });
+
         };
 
         request.onerror = function(e) {
