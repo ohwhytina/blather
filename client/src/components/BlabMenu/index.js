@@ -11,7 +11,7 @@ const BlabMenu = () => {
   const [state, dispatch] = useStoreContext();
   const { loading, data } = useQuery(QUERY_BLABS);
   const { data: thisUserData } = useQuery(QUERY_ME_BASIC);
-  const { loading, data: usersData } = useQuery(QUERY_USERS);
+  const { data: usersData } = useQuery(QUERY_USERS);
 
   const allBlabs = data?.blabs || [];
   // const { blabs, users } = state;
@@ -43,10 +43,10 @@ const BlabMenu = () => {
         idbPromise('blabs', 'put', blab);
       });
     }else if (!loading) {
-        idbPromise('blabs', 'get').then((blabs) => {
+        idbPromise('blabs', 'get').then((indexedBlabs) => {
           dispatch({
             type: UPDATE_BLABS,
-            blabs: blabs
+            blabs: indexedBlabs
           });
         });
       }
@@ -63,10 +63,10 @@ const BlabMenu = () => {
         idbPromise('users', 'put', user);
       });
     } else if (!loading) {
-    idbPromise('users', 'get').then((users) => {
+    idbPromise('users', 'get').then((indexedUsers) => {
       dispatch({
         type: UPDATE_USERS,
-        users: users
+        users: indexedUsers
       });
     });
   }
