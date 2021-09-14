@@ -32,7 +32,7 @@ const BlabMenu = () => {
     }
    
   }, [thisUserData, dispatch]);
-  greeting = "Welecome to the Blabs" + greeting;
+  greeting = "Welcome to the Blabs" + greeting;
   useEffect(() => {
     if (data) {
       dispatch({
